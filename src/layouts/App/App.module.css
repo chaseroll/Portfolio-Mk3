@@ -1,5 +1,5 @@
 .app {
-  width: 100%;
+  width: 100vw;
   position: relative;
   display: grid;
   grid-template: 100% / 100%;

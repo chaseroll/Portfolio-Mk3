@@ -14,19 +14,16 @@ import { useRouter } from 'next/router';
 import { Fragment, createContext, useEffect, useReducer, useState } from 'react';
 import { msToNum } from 'utils/style';
 import { ScrollRestore } from '../layouts/App/ScrollRestore';
+import { CanvasBackground } from 'components/CanvasBackground';
 
 export const AppContext = createContext({});
 
 const App = ({ Component, pageProps }) => {
-
-  
   const [storedTheme] = useLocalStorage('theme', 'dark');
   const [state, dispatch] = useReducer(reducer, initialState);
   const { route, asPath } = useRouter();
   const canonicalRoute = route === '/' ? '' : `${asPath}`;
-  const [pointer, setPointer] = useState([0, 0]);
   useFoucFix();
-
 
   useEffect(() => {
     dispatch({ type: 'setTheme', value: storedTheme || 'dark' });
@@ -43,40 +40,39 @@ const App = ({ Component, pageProps }) => {
                 href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}${canonicalRoute}`}
               />
             </Head>
-            
-            <VisuallyHidden
-              showOnFocus
-              as="a"
-              className={styles.skip}
-              href="#MainContent"
-            >
-              Skip to main content
-            </VisuallyHidden>
-            <Navbar />
-            <main className={styles.app} tabIndex={-1} id="MainContent" onMouseMove = {(e) => {
-              // e.preventDefault();
-              setPointer([e.clientX, e.clientY]);
-            }}>
-              <AnimatePresence exitBeforeEnter>
-                <m.div
-                  key={route}
-                  className={styles.page}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{
-                    type: 'tween',
-                    ease: 'linear',
-                    duration: msToNum(tokens.base.durationS) / 1000,
-                    delay: 0.1,
-                  }}
-                >
-                  <ScrollRestore />
-                  <Component {...pageProps} />
-                </m.div>
-              </AnimatePresence>
-            </main>
-            
+
+            <CanvasBackground />
+            <div style={{ position: 'relative', zIndex: 2 }}>
+              <VisuallyHidden
+                showOnFocus
+                as="a"
+                className={styles.skip}
+                href="#MainContent"
+              >
+                Skip to main content
+              </VisuallyHidden>
+              <Navbar />
+              <main className={styles.app} tabIndex={-1} id="MainContent">
+                <AnimatePresence mode="wait">
+                  <m.div
+                    key={route}
+                    className={styles.page}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{
+                      type: 'tween',
+                      ease: 'linear',
+                      duration: msToNum(tokens.base.durationS) / 1000,
+                      delay: 0.1,
+                    }}
+                  >
+                    <ScrollRestore />
+                    <Component {...pageProps} />
+                  </m.div>
+                </AnimatePresence>
+              </main>
+            </div>
           </Fragment>
         </LazyMotion>
       </ThemeProvider>
