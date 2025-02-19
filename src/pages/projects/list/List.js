@@ -1,6 +1,6 @@
 import { ProjectSummary } from 'layouts/Home/ProjectSummary';
-import { Meta } from 'components/Meta';
-import { Section } from 'components/Section';
+// import { Meta } from 'components/Meta';
+// import { Section } from 'components/Section';
 import gamestackTexture2Large from 'assets/gamestack-list-large.jpg';
 import gamestackTexture2Placeholder from 'assets/gamestack-list-placeholder.jpg';
 import gamestackTexture2 from 'assets/gamestack-list.jpg';
@@ -10,11 +10,16 @@ import gamestackTexture from 'assets/gamestack-login.jpg';
 import sliceTextureLarge from 'assets/slice-app-large.jpg';
 import sliceTexturePlaceholder from 'assets/slice-app-placeholder.jpg';
 import sliceTexture from 'assets/slice-app.jpg';
+import valqora from 'assets/valqora.png';
+import valqora1 from 'assets/valqora-1.png';
+import binner from 'assets/binner.png';
+import indomitable from 'assets/indomitable.png';
+
 import sprTexturePlaceholder from 'assets/spr-lesson-builder-dark-placeholder.jpg';
 import rocketEngine from 'assets/rocket-engine-dark-large.jpg';
 import styles from './List.module.css';
 import React, { useRef, useState, useEffect } from 'react';
-import { Footer } from 'components/Footer';
+// import { Footer } from 'components/Footer';
 import { Heading } from 'components/Heading';
 import { DecoderText } from 'components/DecoderText';
 import { Input } from 'components/Input';
@@ -22,12 +27,11 @@ import { msToNum, numToMs } from 'utils/style';
 import { tokens } from 'components/ThemeProvider/theme';
 import { classes, cssProps } from 'utils/style';
 import { useFormInput } from 'hooks';
-import { CustomCursor } from 'components/CustomCursor';
-import { Text } from 'components/Text';
+// import { CustomCursor } from 'components/CustomCursor';
+// import { Text } from 'components/Text';
 import { Button } from 'components/Button';
 import { Icon } from 'components/Icon';
-import { CustomCursorCore } from 'components/CustomCursorCore';
-
+// import { CustomCursorCore } from 'components/CustomCursorCore';
 
 function getDelay(delayMs, offset = numToMs(0), multiplier = 1) {
   const numDelay = msToNum(delayMs) * multiplier;
@@ -36,60 +40,117 @@ function getDelay(delayMs, offset = numToMs(0), multiplier = 1) {
 
 const initDelay = tokens.base.durationS;
 
-
-export const List = (props) => {
-
+export const List = props => {
   const [visibleSections, setVisibleSections] = useState([]);
   const [scrollIndicatorHidden, setScrollIndicatorHidden] = useState(false);
   const projectOne = useRef();
   const projectTwo = useRef();
   const projectThree = useRef();
   const projectFour = useRef();
+  const projectFive = useRef();
+  const projectSix = useRef();
   const [size, setSize] = useState(2);
   const searchText = useFormInput('');
-  const [filterType, setFilterType] = useState("");
+  const [filterType, setFilterType] = useState('');
   const [text, setText] = useState('');
-  const refArray = [projectOne, projectTwo, projectThree, projectFour];
+  const refArray = [
+    projectOne,
+    projectTwo,
+    projectThree,
+    projectFour,
+    projectFive,
+    projectSix,
+  ];
   const [menuShow, setMenuShow] = useState(0);
   const [enter, setEnter] = useState(false);
   const [leave, setLeave] = useState(false);
   const [sections, setSection] = useState([projectOne, projectTwo]);
 
   // console.log(projectThree);
-  const projectType = ["Engineering", "Electronics", "Computer Science"];
+  const projectType = ['Engineering', 'Electronics', 'Computer Science'];
 
   const projects = [
     {
-      id: "project-1",
-      sectionRef: projectOne,
-      index: 1,
+      id: 'project-3',
+      sectionRef: projectThree,
+      index: 3,
+      title: 'Valqora',
       alternative: false,
-      title: "Hybrid Rocket Engine",
-      description: "Developing Phoenix, a small hybrid rocket engine with variable thrust and precise vectoring capabilities.",
-      buttonText: "View project",
-      buttonLink: "/projects/rocket-engine",
-      type: "Engineering Electronics",
+      description:
+        'A motivational brand with 32.5K followers, sharing ideas, refining them in real time, and building toward something greater.',
+      buttonText: 'View project',
+      buttonLink: '/projects/valqora',
+      type: 'Computer Science',
       model: {
-        type: 'laptop',
-        alt: 'Rocket Engine',
+        type: 'phone',
+        alt: 'Valqora Brand',
         textures: [
           {
-            srcSet: [rocketEngine, rocketEngine],
-            placeholder: sprTexturePlaceholder,
+            srcSet: [valqora, valqora],
+            placeholder: valqora,
           },
-        ]
-      }
+          {
+            srcSet: [valqora1, valqora1],
+            placeholder: valqora1,
+          },
+        ],
+      },
     },
     {
-      id: "project-2",
+      id: 'project-5',
+      sectionRef: projectFive,
+      index: 5,
+      title: 'Binnr',
+      alternative: false,
+      description:
+        'A modern, student-run trash collection service making dorm waste management effortless.',
+      buttonText: 'View project',
+      buttonLink: '/projects/binnr',
+      type: 'Computer Science',
+      model: {
+        type: 'laptop',
+        alt: 'Binnr Service',
+        textures: [
+          {
+            srcSet: [binner, binner],
+            placeholder: binner,
+          },
+        ],
+      },
+    },
+    {
+      id: 'project-4',
+      sectionRef: projectFour,
+      index: 4,
+      title: 'Indomitable',
+      alternative: true,
+      description:
+        'A clean, high-performance energy drink designed to fuel both mind and body—without compromise.',
+      buttonText: 'View project',
+      buttonLink: '/projects/indomitable',
+      type: 'Engineering',
+      model: {
+        type: 'laptop',
+        alt: 'Indomitable Drink',
+        textures: [
+          {
+            srcSet: [indomitable, indomitable],
+            placeholder: indomitable,
+          },
+        ],
+      },
+    },
+    {
+      id: 'project-2',
       sectionRef: projectTwo,
       index: 2,
-      title: "Helios App",
+      title: 'Helios App',
       alternative: true,
-      description: "Creating a cross platform AI-powered app designed to elevate user productivity, physicality, and fulfillment.",
-      buttonText: "View project",
-      buttonLink: "/projects/helios",
-      type: "Computer Science",
+      description:
+        'An AI-powered productivity app designed to help users maximize discipline, efficiency, and personal growth.',
+      buttonText: 'View project',
+      buttonLink: '/projects/helios',
+      type: 'Computer Science',
       model: {
         type: 'phone',
         alt: 'Digital Development',
@@ -102,44 +163,52 @@ export const List = (props) => {
             srcSet: [gamestackTexture2, gamestackTexture2Large],
             placeholder: gamestackTexture2Placeholder,
           },
-        ]
-      }
+        ],
+      },
     },
     {
-      id: "project-3",
-      sectionRef: projectThree,
-      index: 3,
-      title: "Avata",
+      id: 'project-1',
+      sectionRef: projectOne,
+      index: 1,
       alternative: false,
-      description: "Assisted in the creation of a startup poised to streamline local event planning and coordination.",
-      buttonText: "Visit Website",
-      buttonLink: "https://avata.events/",
-      type: "Electronics",
+      title: 'Hybrid Rocket Engine',
+      description:
+        'A hands-on approach to aerospace engineering, pushing the boundaries of small-scale rocketry.',
+      buttonText: 'View project',
+      buttonLink: '/projects/rocket-engine',
+      type: 'Engineering',
       model: {
         type: 'laptop',
-        alt: 'UAC Drone',
+        alt: 'Rocket Engine',
+        textures: [
+          {
+            srcSet: [rocketEngine, rocketEngine],
+            placeholder: sprTexturePlaceholder,
+          },
+        ],
+      },
+    },
+    {
+      id: 'project-6',
+      sectionRef: projectSix,
+      index: 6,
+      title: 'Avata',
+      alternative: true,
+      description:
+        'An entrepreneurial dive into event hosting—turning strategy, logistics, and marketing into a profitable experience.',
+      buttonText: 'View project',
+      buttonLink: '/projects/avata',
+      type: 'Computer Science',
+      model: {
+        type: 'laptop',
+        alt: 'Avata Events',
         textures: [
           {
             srcSet: [sliceTexture, sliceTextureLarge],
             placeholder: sliceTexturePlaceholder,
           },
-        ]
-      }
-    },
-    {
-      id: "project-4",
-      sectionRef: projectFour,
-      index: 4,
-      title: "Coming Soon",
-      alternative: true,
-      type: "",
-      description: "Details Not Yet Available.",
-      buttonText: "N/A",
-      buttonLink: "",
-      model: {
-        type: ''
-      }
-      
+        ],
+      },
     },
   ];
 
@@ -155,22 +224,36 @@ export const List = (props) => {
 
   useEffect(() => {
     console.log(filterType);
-    if (projects.filter((item) => item.type.includes(filterType)).filter(checkFunction).slice(0, size).length > 0) setSection(projects.filter((item) => item.type.includes(filterType)).filter(checkFunction).map(item => (item.sectionRef)).slice(0, size));
+    if (
+      projects
+        .filter(item => item.type.includes(filterType))
+        .filter(checkFunction)
+        .slice(0, size).length > 0
+    )
+      setSection(
+        projects
+          .filter(item => item.type.includes(filterType))
+          .filter(checkFunction)
+          .map(item => item.sectionRef)
+          .slice(0, size)
+      );
     else setSection([refArray[0], refArray[1]]);
   }, [text, size, filterType]);
 
   useEffect(() => {
-    // if(projects.slice(0, size).filter(checkFunction).length === 0) return;
-    // const sections = [projectOne, projectTwo];
-    if (sections.length === 0) return;
+    if (!sections?.length) return;
+
+    // Create observers with configurations
     const sectionObserver = new IntersectionObserver(
       (entries, observer) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             const section = entry.target;
             observer.unobserve(section);
-            if (visibleSections.includes(section)) return;
-            setVisibleSections(prevSections => [...prevSections, section]);
+            setVisibleSections(prevSections => {
+              if (prevSections.includes(section)) return prevSections;
+              return [...prevSections, section];
+            });
           }
         });
       },
@@ -183,113 +266,141 @@ export const List = (props) => {
       },
       { rootMargin: '-100% 0px 0px 0px' }
     );
-    // if(sections.length == 2) sectionObserver.observe(projectTwo.current);
+
+    // Observe all sections
     sections.forEach(section => {
-      // console.log(section);
-      sectionObserver.observe(section.current);
+      if (section?.current) {
+        sectionObserver.observe(section.current);
+      }
     });
 
-    indicatorObserver.observe(sections[0].current);
+    // Observe first section for scroll indicator
+    if (sections[0]?.current) {
+      indicatorObserver.observe(sections[0].current);
+    }
 
+    // Cleanup function
     return () => {
-      sectionObserver.disconnect();
-      indicatorObserver.disconnect();
+      if (sectionObserver) {
+        sections.forEach(section => {
+          if (section?.current) {
+            sectionObserver.unobserve(section.current);
+          }
+        });
+        sectionObserver.disconnect();
+      }
+      if (indicatorObserver) {
+        indicatorObserver.disconnect();
+      }
     };
-  }, [visibleSections, sections]);
+  }, [sections]); // Only re-run if sections array changes
 
-  const checkFunction = (item) => {
-    return (String(item.title).toLowerCase().includes(text.toLowerCase()) || String(item.description).toLowerCase().includes(text.toLowerCase()));
+  const checkFunction = item => {
+    return (
+      String(item.title).toLowerCase().includes(text.toLowerCase()) ||
+      String(item.description).toLowerCase().includes(text.toLowerCase())
+    );
   };
 
   return (
     <section
       id={props.id}
       ref={props.sectionRef}
-      onClick={(e) => {
-
-        if (!((enter === true) && (leave === false)) && (menuShow === true)) setMenuShow(false);
-      }}>
-
-      <div className={styles.heading} style={{
-        marginBottom: "0px", paddingLeft: 30
-      }}>
-        <Heading level={3} as="h1" style={{
-          marginBottom: "-50px"
-        }}>
+      onClick={e => {
+        if (!(enter === true && leave === false) && menuShow === true) setMenuShow(false);
+      }}
+    >
+      <div
+        className={styles.heading}
+        style={{
+          marginBottom: '0px',
+          paddingLeft: 30,
+        }}
+      >
+        <Heading
+          level={3}
+          as="h1"
+          style={{
+            marginBottom: '-50px',
+          }}
+        >
           <DecoderText text="PROJECTS" />
         </Heading>
-
 
         <div className={styles.inputGroup}>
           <Input
             className={styles.btn}
             style={{
-              marginBottom: "-50px",
+              marginBottom: '-50px',
               paddingLeft: 0,
               zIndex: 31,
-              animationDelay: getDelay(tokens.base.durationXS, initDelay) // example property
+              animationDelay: getDelay(tokens.base.durationXS, initDelay), // example property
             }}
             autoComplete="off"
             label="Search Projects"
             maxLength={512}
             {...searchText}
-            onChange={(e) => {
-
+            onChange={e => {
               setText(e.target.value);
             }}
             value={text}
           />
-
 
           <Button
             secondary
             className={styles.button}
             data-visible={true}
             style={{
-              marginBottom: "-50px",
+              marginBottom: '-50px',
               zIndex: 31,
-              paddingLeft: "0",
-              paddingRight: "0",
-              textAlign: "center",
+              paddingLeft: '0',
+              paddingRight: '0',
+              textAlign: 'center',
               // backgroundColor:  filterType === "" ? "rgb(var(--rgbText) / 0.0)" : "rgb(var(--varText) / 0.3)!important"
             }}
-            onClick={(e) => {
+            onClick={e => {
               // e.preventDefault();
               setMenuShow(!menuShow);
             }}
-
           >
-            <Icon icon="filter" style={{
-              width: "30px",
-              height: "30px",
-              margin: "0",
-              marginLeft: "10px",
-              padding: "",
-              color: filterType === "" ? "rgb(var(--rgbText) / 0.5)" : "rgb(var(--varText) / 1)"
-            }} />
+            <Icon
+              icon="filter"
+              style={{
+                width: '30px',
+                height: '30px',
+                margin: '0',
+                marginLeft: '10px',
+                padding: '',
+                color:
+                  filterType === ''
+                    ? 'rgb(var(--rgbText) / 0.5)'
+                    : 'rgb(var(--varText) / 1)',
+              }}
+            />
           </Button>
-          <div className={styles.modal} style={{
-            position: "absolute",
-            right: 10,
-            top: menuShow ? "70px" : "60px",
-            opacity: menuShow ? 1 : 0,
-            zIndex: menuShow ? "var(--zIndex3)" : -1000,
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "flex-start",
-            alignItems: "flex-start",
-            height: "auto",
-            transition: "all 0.2s ease-in",
-            paddingTop: "10px",
-            paddingBottom: "10px"
-          }}
-
-            onMouseEnter={(e) => {
+          <div
+            className={styles.modal}
+            style={{
+              position: 'absolute',
+              right: 10,
+              top: menuShow ? '70px' : '60px',
+              opacity: menuShow ? 1 : 0,
+              zIndex: menuShow ? 'var(--zIndex3)' : -1000,
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'flex-start',
+              alignItems: 'flex-start',
+              height: 'auto',
+              transition: 'all 0.2s ease-in',
+              paddingTop: '10px',
+              paddingBottom: '10px',
+            }}
+            onMouseEnter={e => {
               // e.preventDefault();
               setEnter(true);
               setLeave(false);
             }}
-            onMouseLeave={(e) => {
+            onMouseLeave={e => {
               // e.preventDefault();
               setLeave(true);
               setEnter(false);
@@ -297,16 +408,25 @@ export const List = (props) => {
           >
             {projectType.map((item, idx) => {
               return (
-                <div key={idx} style={{
-                  position: "relative",
-                  paddingTop: "4px",
-                  paddingBottom: "4px"
-                }}>
-                  <Button secondary as="button" onClick={(e) => {
-                    setFilterType(item === filterType ? "" : item);
-                  }} style={{
-                    backgroundColor: item === filterType ? "rgb(var(--rgbText) / 0.3)" : "transparent"
-                  }}>
+                <div
+                  key={idx}
+                  style={{
+                    position: 'relative',
+                    paddingTop: '4px',
+                    paddingBottom: '4px',
+                  }}
+                >
+                  <Button
+                    secondary
+                    as="button"
+                    onClick={e => {
+                      setFilterType(item === filterType ? '' : item);
+                    }}
+                    style={{
+                      backgroundColor:
+                        item === filterType ? 'rgb(var(--rgbText) / 0.3)' : 'transparent',
+                    }}
+                  >
                     {item}
                   </Button>
                 </div>
@@ -314,75 +434,114 @@ export const List = (props) => {
             })}
           </div>
         </div>
-
       </div>
-      <div style={{
-        position: "relative"
-      }}>
-        {projects.filter((item) => item.type.includes(filterType)).filter(checkFunction).slice(0, size).length > 0 && projects.filter((item) => item.type.includes(filterType)).filter(checkFunction).slice(0, size).map((item, idx) => {
-          // console.log(item);
-          return (
-            <>
-              <ProjectSummary
-                key={idx}
-                id={item.id}
-                alternate={item.alternative}
-                sectionRef={item.sectionRef}
-                visible={visibleSections.includes(item.sectionRef.current)}
-                index={idx + 1}
-                title={item.title}
-                description={item.description}
-                buttonText={item.buttonText}
-                buttonLink={item.buttonLink}
-                model={item.model}
-              />
-            </>
-          );
-        })}
-        <div style={{ width: "100%", justifyContent: "center", height: "auto", display: projects.length === size ? "none" : "flex" }}>
-          <Button iconHoverShift iconEnd="arrowDown" style={{ transition: "all 0.4s ease", opacity: "1", }} onClick={(e) => {
-            // e.preventDefault();
-            setSize(size + 1);
-          }}>
+      <div
+        style={{
+          position: 'relative',
+        }}
+      >
+        {projects
+          .filter(item => item.type.includes(filterType))
+          .filter(checkFunction)
+          .slice(0, size).length > 0 &&
+          projects
+            .filter(item => item.type.includes(filterType))
+            .filter(checkFunction)
+            .slice(0, size)
+            .map((item, idx) => {
+              // console.log(item);
+              return (
+                <>
+                  <ProjectSummary
+                    key={idx}
+                    id={item.id}
+                    alternate={item.alternative}
+                    sectionRef={item.sectionRef}
+                    visible={visibleSections.includes(item.sectionRef.current)}
+                    index={idx + 1}
+                    title={item.title}
+                    description={item.description}
+                    buttonText={item.buttonText}
+                    buttonLink={item.buttonLink}
+                    model={item.model}
+                  />
+                </>
+              );
+            })}
+        <div
+          style={{
+            width: '100%',
+            justifyContent: 'center',
+            height: 'auto',
+            display: projects.length === size ? 'none' : 'flex',
+          }}
+        >
+          <Button
+            iconHoverShift
+            iconEnd="arrowDown"
+            style={{ transition: 'all 0.4s ease', opacity: '1' }}
+            onClick={e => {
+              // e.preventDefault();
+              setSize(size + 2);
+            }}
+          >
             LOAD MORE
-          </Button></div>
-        {projects.filter((item) => item.type.includes(filterType)).filter(checkFunction).slice(0, size).length == 0 && projects.slice(0, size).map((item, idx) => {
-          // console.log(item);
-          return (
-            <>
-              <ProjectSummary
-                key={idx}
-                id={item.id}
-                alternate={item.alternative}
-                sectionRef={item.sectionRef}
-                visible={visibleSections.includes(item.sectionRef.current) && checkFunction(item)}
-                index={idx + 1}
-                title={item.title}
-                description={item.description}
-                buttonText={item.buttonText}
-                buttonLink={item.buttonLink}
-                model={item.model}
-                style={{
-                  display: checkFunction(item) ? "flex" : "none"
-                }}
-              />
-
-            </>
-          );
-        })}
-        {projects.filter((item) => item.type.includes(filterType)).filter(checkFunction).slice(0, size).length == 0 && <div style={{
-          display: "flex",
-          justifyContent: "center",
-          paddingTop: "200px"
-        }}><Heading level={4}>{"There is no result."}</Heading></div>}
+          </Button>
+        </div>
+        {projects
+          .filter(item => item.type.includes(filterType))
+          .filter(checkFunction)
+          .slice(0, size).length == 0 &&
+          projects.slice(0, size).map((item, idx) => {
+            // console.log(item);
+            return (
+              <>
+                <ProjectSummary
+                  key={idx}
+                  id={item.id}
+                  alternate={item.alternative}
+                  sectionRef={item.sectionRef}
+                  visible={
+                    visibleSections.includes(item.sectionRef.current) &&
+                    checkFunction(item)
+                  }
+                  index={idx + 1}
+                  title={item.title}
+                  description={item.description}
+                  buttonText={item.buttonText}
+                  buttonLink={item.buttonLink}
+                  model={item.model}
+                  style={{
+                    display: checkFunction(item) ? 'flex' : 'none',
+                  }}
+                />
+              </>
+            );
+          })}
+        {projects
+          .filter(item => item.type.includes(filterType))
+          .filter(checkFunction)
+          .slice(0, size).length == 0 && (
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              paddingTop: '200px',
+            }}
+          >
+            <Heading level={4}>{'There is no result.'}</Heading>
+          </div>
+        )}
       </div>
-      <div style={{
-        display: "flex",
-        justifyContent: "center",
-        position: "relative",
-        marginBottom: "200px",
-        marginTop: "200px",
-      }}>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          position: 'relative',
+          marginBottom: '200px',
+          marginTop: '200px',
+        }}
+      >
         {/* <Button iconHoverShift style = {{width: "300px"}} href = {size == 4 ? '/#article' : ""} onClick = {(e) =>{
             if(size == 4) setSize(2);
             else setSize(++size);

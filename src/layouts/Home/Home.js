@@ -29,35 +29,35 @@ import { AppContext } from 'pages/_app.page';
 const disciplines = ['Athlete', 'Businessman', 'Innovator'];
 
 const posts = [
-  {
-    title: 'Why I Built This Website',
-    abstract: "A breif history of this project.",
-    date: '2023-11-04',
-    banner: '/static/hello-world-banner.jpg',
-    type: "Computer Science",
-    timecode: '00:01:11:40',
-    slug: 'hello-world'
-  },
-  {
-    title: 'College English Portfolio',
-    abstract: "Exists as a requirement for my class.",
-    date: '2024-09-01',
-    banner: '/static/enc-port-banner.jpg',
-    type: "Misc",
-    timecode: '00:01:15:90',
-    slug: 'enc-port'
-  },
-  
-], featured = {
-  title: 'My University Essays',
-  abstract: 'My personal and supplemental application essays.',
-  date: '2023-11-07',
-  banner: '/static/modern-react-css-banner.jpg',
-  type: "Misc",
-  featured: true,
-  timecode: '00:06:09:90',
-  slug: 'uni-essays'
-};
+    {
+      title: 'Why I Built This Website',
+      abstract: 'A breif history of this project.',
+      date: '2023-11-04',
+      banner: '/static/hello-world-banner.jpg',
+      type: 'Computer Science',
+      timecode: '00:01:11:40',
+      slug: 'hello-world',
+    },
+    {
+      title: 'College English Portfolio',
+      abstract: 'Exists as a requirement for my class.',
+      date: '2024-09-01',
+      banner: '/static/enc-port-banner.jpg',
+      type: 'Misc',
+      timecode: '00:01:15:90',
+      slug: 'enc-port',
+    },
+  ],
+  featured = {
+    title: 'My University Essays',
+    abstract: 'My personal and supplemental application essays.',
+    date: '2023-11-07',
+    banner: '/static/modern-react-css-banner.jpg',
+    type: 'Misc',
+    featured: true,
+    timecode: '00:06:09:90',
+    slug: 'uni-essays',
+  };
 
 export const Home = () => {
   const [visibleSections, setVisibleSections] = useState([]);
@@ -68,7 +68,6 @@ export const Home = () => {
   const contact = useRef();
   const article = useRef();
   const { dispatch } = useContext(AppContext);
-
 
   useEffect(() => {
     const sections = [intro, details, project, contact, article];
@@ -84,7 +83,7 @@ export const Home = () => {
 
             observer.unobserve(section);
             dispatch({
-              type: "updateSection",
+              type: 'updateSection',
               value: section,
             });
             if (visibleSections.includes(section)) return;
@@ -116,11 +115,10 @@ export const Home = () => {
   }, [visibleSections]);
 
   useEffect(() => {
-
     let isHovering1 = false;
     let isHovering2 = false;
     const LERP_SCALE = 0.15;
-    const LERP_SCALE_SLOW = 0.14;  // New: Slower lerp scale
+    const LERP_SCALE_SLOW = 0.14; // New: Slower lerp scale
 
     let currentBorderOpacity = 1;
     let targetBorderOpacity = 1;
@@ -138,7 +136,7 @@ export const Home = () => {
       const cursor2 = document.querySelector('.custom-cursor-2');
       const darkMode = isDarkMode();
 
-      cursor1.style.backgroundColor = darkMode ? "white" : "black";
+      cursor1.style.backgroundColor = darkMode ? 'white' : 'black';
       let cursorColor2 = darkMode
         ? `rgba(255, 255, 255, ${currentBorderOpacity})`
         : `rgba(0, 0, 0, ${currentBorderOpacity})`;
@@ -159,7 +157,6 @@ export const Home = () => {
     let prevCursorX2 = 0;
     let prevCursorY2 = 0;
     let prevWindowWidth = window.innerWidth;
-
 
     function update() {
       if (window.angular) {
@@ -192,14 +189,11 @@ export const Home = () => {
       requestAnimationFrame(update);
     }
 
-
-
-    window.addEventListener('mousemove', (e) => {
+    window.addEventListener('mousemove', e => {
       const cursor2 = document.querySelector('.custom-cursor-2');
       const cursor1 = document.querySelector('.custom-cursor');
-
-      cursor1.style.opacity = 1;
-      cursor2.style.opacity = 1;
+      if (cursor1) cursor1.style.opacity = 1;
+      if (cursor2) cursor2.style.opacity = 1;
       const widthRatio = window.innerWidth / prevWindowWidth;
       mouseX = e.clientX - 16 * widthRatio;
       mouseY = e.clientY - 16;
@@ -212,14 +206,14 @@ export const Home = () => {
       const link = document.querySelectorAll('button');
 
       button.forEach(function (button) {
-        button.addEventListener("mouseenter", function () {
+        button.addEventListener('mouseenter', function () {
           isHovering2 = true;
           targetScale = 1.5;
           targetBorderWidth = 15.5;
           targetBorderOpacity = 0.5;
         });
 
-        button.addEventListener("mouseleave", function () {
+        button.addEventListener('mouseleave', function () {
           isHovering2 = false;
           targetScale = 1.0;
           targetBorderWidth = 1;
@@ -228,14 +222,14 @@ export const Home = () => {
       });
 
       link.forEach(function (link) {
-        link.addEventListener("mouseenter", function () {
+        link.addEventListener('mouseenter', function () {
           isHovering2 = true;
           targetScale = 1.5;
           targetBorderWidth = 15.5;
           targetBorderOpacity = 0.5;
         });
 
-        link.addEventListener("mouseleave", function () {
+        link.addEventListener('mouseleave', function () {
           isHovering2 = false;
           targetScale = 1.0;
           targetBorderWidth = 1;
@@ -265,11 +259,7 @@ export const Home = () => {
       <CustomCursor />
       <CustomCursorCore />
       <div className={styles.home}>
-
-        <Meta
-          title="Portfolio"
-          description="Portfolio of Chase Roll."
-        />
+        <Meta title="Portfolio" description="Portfolio of Chase Roll." />
         <Intro
           id="intro"
           sectionRef={intro}
@@ -283,12 +273,24 @@ export const Home = () => {
           id="about"
         />
 
-        <List sectionRef={project} visible={visibleSections.includes(project.current)} id="projects" />
+        <List
+          sectionRef={project}
+          visible={visibleSections.includes(project.current)}
+          id="projects"
+        />
 
-
-        <Article posts={posts} featured={featured} id="articles" sectionRef={article} visible={visibleSections.includes(article.current)} />
+        <Article
+          posts={posts}
+          featured={featured}
+          id="articles"
+          sectionRef={article}
+          visible={visibleSections.includes(article.current)}
+        />
         <Contact
-          id="contact" visible={visibleSections.includes(contact.current)} sectionRef={contact} />
+          id="contact"
+          visible={visibleSections.includes(contact.current)}
+          sectionRef={contact}
+        />
         <Footer />
       </div>
     </>

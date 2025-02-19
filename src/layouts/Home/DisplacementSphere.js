@@ -60,7 +60,7 @@ export const DisplacementSphere = props => {
       failIfMajorPerformanceCaveat: true,
     });
     renderer.current.setSize(innerWidth, innerHeight);
-    renderer.current.setPixelRatio(1);
+    renderer.current.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.current.outputEncoding = sRGBEncoding;
 
     camera.current = new PerspectiveCamera(54, innerWidth / innerHeight, 0.1, 100);
@@ -81,7 +81,7 @@ export const DisplacementSphere = props => {
     };
 
     startTransition(() => {
-      geometry.current = new SphereBufferGeometry(32, 128, 128);
+      geometry.current = new SphereBufferGeometry(32, 64, 64);
       sphere.current = new Mesh(geometry.current, material.current);
       sphere.current.position.z = 0;
       sphere.current.modifier = Math.random();
@@ -158,19 +158,29 @@ export const DisplacementSphere = props => {
 
   useEffect(() => {
     let animation;
+    let animationFrameId;
+    let lastFrame = Date.now();
+    const targetFrameRate = 60;
+    const frameInterval = 1000 / targetFrameRate;
 
     const animate = () => {
-      animation = requestAnimationFrame(animate);
+      animationFrameId = requestAnimationFrame(animate);
+      const currentTime = Date.now();
+      const elapsed = currentTime - lastFrame;
 
-      if (uniforms.current !== undefined) {
-        uniforms.current.time.value = 0.00005 * (Date.now() - start.current);
+      // Throttle animation frame rate
+      if (elapsed > frameInterval) {
+        if (uniforms.current !== undefined) {
+          uniforms.current.time.value = 0.00005 * (currentTime - start.current);
+        }
+
+        sphere.current.rotation.z += 0.001;
+        sphere.current.rotation.x = rotationX.get();
+        sphere.current.rotation.y = rotationY.get();
+
+        renderer.current.render(scene.current, camera.current);
+        lastFrame = currentTime - (elapsed % frameInterval);
       }
-
-      sphere.current.rotation.z += 0.001;
-      sphere.current.rotation.x = rotationX.get();
-      sphere.current.rotation.y = rotationY.get();
-
-      renderer.current.render(scene.current, camera.current);
     };
 
     if (!reduceMotion && isInViewport) {
@@ -180,7 +190,7 @@ export const DisplacementSphere = props => {
     }
 
     return () => {
-      cancelAnimationFrame(animation);
+      cancelAnimationFrame(animationFrameId);
     };
   }, [isInViewport, reduceMotion, rotationX, rotationY]);
 
