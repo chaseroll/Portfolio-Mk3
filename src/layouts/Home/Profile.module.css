@@ -35,6 +35,7 @@
 }
 
 .content {
+  align-items: baseline;
   display: grid;
   grid-template-columns: 1fr 50%;
   grid-column-gap: var(--space2XL);
