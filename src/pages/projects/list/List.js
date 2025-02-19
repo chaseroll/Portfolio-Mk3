@@ -453,7 +453,7 @@ export const List = props => {
               return (
                 <>
                   <ProjectSummary
-                    key={idx}
+                    key={item.id || idx}
                     id={item.id}
                     alternate={item.alternative}
                     sectionRef={item.sectionRef}
@@ -497,7 +497,7 @@ export const List = props => {
             return (
               <>
                 <ProjectSummary
-                  key={idx}
+                  key={item.id || idx}
                   id={item.id}
                   alternate={item.alternative}
                   sectionRef={item.sectionRef}

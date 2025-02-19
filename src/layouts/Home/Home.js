@@ -30,33 +30,66 @@ const disciplines = ['Athlete', 'Businessman', 'Innovator'];
 
 const posts = [
     {
-      title: 'Why I Built This Website',
-      abstract: 'A breif history of this project.',
-      date: '2023-11-04',
-      banner: '/static/hello-world-banner.jpg',
-      type: 'Computer Science',
-      timecode: '00:01:11:40',
-      slug: 'hello-world',
+      title: 'Humans and AI',
+      abstract:
+        'An exploration of the evolving relationship between humans and artificial intelligence, examining the implications for society.',
+      date: '2024-10-09',
+      banner: '/static/humans-ai-banner.jpg',
+      type: 'Technology',
+      timecode: '00:02:45:30',
+      slug: 'humans-and-ai',
     },
     {
-      title: 'College English Portfolio',
-      abstract: 'Exists as a requirement for my class.',
-      date: '2024-09-01',
-      banner: '/static/enc-port-banner.jpg',
-      type: 'Misc',
-      timecode: '00:01:15:90',
-      slug: 'enc-port',
+      title: 'Thinking In Words',
+      abstract:
+        'Exploring the art of articulating thoughts through written expression and its impact on cognitive development.',
+      date: '2024-08-08',
+      banner: '/static/thinking-words-banner.jpg',
+      type: 'Philosophy',
+      timecode: '00:02:15:30',
+      slug: 'thinking-in-words',
+    },
+    {
+      title: 'Eagle Scout Letter of Ambition',
+      abstract:
+        'A personal reflection on leadership, service, and the journey toward achieving the Eagle Scout rank.',
+      date: '2024-05-25',
+      banner: '/static/eagle-scout-banner.jpg',
+      type: 'Leadership',
+      timecode: '00:01:45:20',
+      slug: 'eagle-scout-letter',
+    },
+    {
+      title: 'Eagle Scout Letter of Ambition',
+      abstract:
+        'A personal reflection on leadership, service, and the journey toward achieving the Eagle Scout rank.',
+      date: '2024-05-25',
+      banner: '/static/eagle-scout-banner.jpg',
+      type: 'Leadership',
+      timecode: '00:01:45:20',
+      slug: 'eagle-scout-letter',
+    },
+    {
+      title: "Parkinson's Syndrome: A Personal Perspective",
+      abstract:
+        "Exploring the complexities of Parkinson's syndrome through both medical and human lenses",
+      date: '2023-09-14',
+      banner: '/static/parkinsons-banner.jpg',
+      type: 'Health',
+      timecode: '00:01:30:00',
+      slug: 'parkinsons-syndrome',
     },
   ],
   featured = {
-    title: 'My University Essays',
-    abstract: 'My personal and supplemental application essays.',
-    date: '2023-11-07',
-    banner: '/static/modern-react-css-banner.jpg',
-    type: 'Misc',
+    title: 'Lament of Academia',
+    abstract:
+      'A critical examination of modern educational systems and their impact on intellectual growth.',
+    date: '2024-09-19',
+    banner: '/static/academia-banner.jpg',
+    type: 'Education',
     featured: true,
-    timecode: '00:06:09:90',
-    slug: 'uni-essays',
+    timecode: '00:05:30:00',
+    slug: 'lament-of-academia',
   };
 
 export const Home = () => {
