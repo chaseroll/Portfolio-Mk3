@@ -77,7 +77,7 @@
 
 .navLink {
   padding: 0.75vw;
-  color: rgb(var(--rgbText) / 0.8);
+  color: var(--colorTextBody);
   font-weight: var(--fontWeightMedium);
   font-size: var(--headerNavFontSize);
   text-decoration: none;
@@ -86,13 +86,6 @@
   line-height: 1;
   display: inline-flex;
   align-items: center;
-
-  &:hover,
-  &:active,
-  &:focus,
-  &[aria-current='page'] {
-    color: var(--colorTextBody);
-  }
 
   &::after {
     content: '';
@@ -103,20 +96,13 @@
     background: rgb(var(--rgbAccent));
     transform: scaleX(0);
     transform-origin: right;
+    transition: transform var(--durationM) var(--bezierFastoutSlowin);
   }
 
-  @media (--mediaUseMotion) {
-    &::after {
-      transition: transform var(--durationM) var(--bezierFastoutSlowin);
-    }
-  }
-
-  &:hover::after,
-  &:active::after,
-  &:focus::after,
   &[aria-current='page']::after {
     transform: scaleX(1);
     transform-origin: left;
+    transition: transform var(--durationM) var(--bezierFastoutSlowin);
   }
 }
 

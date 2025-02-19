@@ -15,6 +15,16 @@ import { navLinks, socialLinks } from './navData';
 import { DecoderText } from 'components/DecoderText';
 import profileKatakana from 'assets/katakana-profile.svg?url';
 
+// Add this function at the top level, outside the Navbar component
+const isElementInViewport = (element, offset = 0) => {
+  if (!element) return false;
+  const rect = element.getBoundingClientRect();
+  return (
+    rect.top <= offset + window.innerHeight / 3 &&
+    rect.bottom >= offset + window.innerHeight / 3
+  );
+};
+
 export function Navbar() {
   // Combine related states
   const [navState, setNavState] = useState({
@@ -33,10 +43,25 @@ export function Navbar() {
   const isMobile = windowSize.width <= media.mobile || windowSize.height <= 696;
   const scrollToHash = useScrollToHash();
 
-  // Optimized scroll handler
+  // Add this state to track active section
+  const [activeSection, setActiveSection] = useState('');
+
+  // Add isScrolling state
+  const [isScrolling, setIsScrolling] = useState(false);
+  const scrollTimer = useRef(null);
+
+  // Modify the scroll handler to track scrolling state
   useEffect(() => {
     const handleScroll = () => {
       if (scrollTimeout.current) return;
+
+      // Set scrolling to true
+      setIsScrolling(true);
+
+      // Clear previous scroll timer
+      if (scrollTimer.current) {
+        clearTimeout(scrollTimer.current);
+      }
 
       scrollTimeout.current = window.requestAnimationFrame(() => {
         setNavState(prev => {
@@ -50,6 +75,11 @@ export function Navbar() {
           };
         });
 
+        // Set timer to remove scrolling state after scrolling stops
+        scrollTimer.current = setTimeout(() => {
+          setIsScrolling(false);
+        }, 150); // Adjust this value to control how long to wait after scrolling stops
+
         scrollTimeout.current = null;
       });
     };
@@ -59,6 +89,9 @@ export function Navbar() {
       window.removeEventListener('scroll', handleScroll);
       if (scrollTimeout.current) {
         window.cancelAnimationFrame(scrollTimeout.current);
+      }
+      if (scrollTimer.current) {
+        clearTimeout(scrollTimer.current);
       }
     };
   }, []);
@@ -147,22 +180,40 @@ export function Navbar() {
     };
   }, [themeId, windowSize, asPath]);
 
-  // Check if a nav item should be active
-  const getCurrent = (pathname = '') => {
-    // Get the current hash from the URL
-    const currentHash = asPath.split('#')[1];
-    const linkHash = pathname.split('#')[1];
-    // For home page
-    if (route === '/') {
-      // If both the nav item and current URL have hashes, compare them
-      if (linkHash && currentHash) {
-        return linkHash === currentHash ? 'page' : '';
-      }
-      // If nav item has no hash but we're on home page root
-      return !currentHash && pathname === '/' ? 'page' : '';
-    }
+  // Add this effect to handle scroll-based section detection
+  useEffect(() => {
+    const handleScroll = () => {
+      if (route !== '/') return;
 
-    // For other pages, compare the route paths without hashes
+      // Use requestAnimationFrame for performance
+      requestAnimationFrame(() => {
+        const sections = navLinks.map(link => ({
+          id: link.pathname.replace('/#', ''),
+          element: document.getElementById(link.pathname.replace('/#', '')),
+        }));
+
+        const currentSection = sections.find(section =>
+          isElementInViewport(section.element)
+        );
+
+        setActiveSection(currentSection ? `/#${currentSection.id}` : '');
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Check initial position
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [route]);
+
+  // Modify the getCurrent function
+  const getCurrent = (pathname = '') => {
+    if (route === '/') {
+      // Don't show active state while scrolling
+      if (isScrolling) return '';
+      return pathname === activeSection ? 'page' : '';
+    }
+    // For other pages, keep existing logic
     const routePath = pathname.split('#')[0];
     return routePath === route ? 'page' : '';
   };
