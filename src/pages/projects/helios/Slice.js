@@ -47,16 +47,18 @@ import { CustomCursorCore } from 'components/CustomCursorCore';
 const title = 'Helios App';
 const description =
   'Creating a cross platform AI-powered app designed to elevate user productivity, physicality, and fulfillment.';
-const roles = ['UI / UX Design', 'Front / Backend Development', 'Artificial Intelligence'];
+const roles = [
+  'UI / UX Design',
+  'Front / Backend Development',
+  'Artificial Intelligence',
+];
 
 export const Slice = () => {
-
   useEffect(() => {
-
     let isHovering1 = false;
     let isHovering2 = false;
     const LERP_SCALE = 0.15;
-    const LERP_SCALE_SLOW = 0.13;  // New: Slower lerp scale
+    const LERP_SCALE_SLOW = 0.13; // New: Slower lerp scale
 
     let currentBorderOpacity = 1;
     let targetBorderOpacity = 1;
@@ -74,7 +76,7 @@ export const Slice = () => {
       const cursor2 = document.querySelector('.custom-cursor-2');
       const darkMode = isDarkMode();
 
-      cursor1.style.backgroundColor = darkMode ? "white" : "black";
+      cursor1.style.backgroundColor = darkMode ? 'white' : 'black';
       let cursorColor2 = darkMode
         ? `rgba(255, 255, 255, ${currentBorderOpacity})`
         : `rgba(0, 0, 0, ${currentBorderOpacity})`;
@@ -95,7 +97,6 @@ export const Slice = () => {
     let prevCursorX2 = 0;
     let prevCursorY2 = 0;
     let prevWindowWidth = window.innerWidth;
-
 
     function update() {
       if (window.angular) {
@@ -128,9 +129,7 @@ export const Slice = () => {
       requestAnimationFrame(update);
     }
 
-
-
-    window.addEventListener('mousemove', (e) => {
+    window.addEventListener('mousemove', e => {
       const cursor2 = document.querySelector('.custom-cursor-2');
       const cursor1 = document.querySelector('.custom-cursor');
 
@@ -148,14 +147,14 @@ export const Slice = () => {
       const link = document.querySelectorAll('button');
 
       button.forEach(function (button) {
-        button.addEventListener("mouseenter", function () {
+        button.addEventListener('mouseenter', function () {
           isHovering2 = true;
           targetScale = 1.5;
           targetBorderWidth = 15.5;
           targetBorderOpacity = 0.5;
         });
 
-        button.addEventListener("mouseleave", function () {
+        button.addEventListener('mouseleave', function () {
           isHovering2 = false;
           targetScale = 1.0;
           targetBorderWidth = 1;
@@ -164,14 +163,14 @@ export const Slice = () => {
       });
 
       link.forEach(function (link) {
-        link.addEventListener("mouseenter", function () {
+        link.addEventListener('mouseenter', function () {
           isHovering2 = true;
           targetScale = 1.5;
           targetBorderWidth = 15.5;
           targetBorderOpacity = 0.5;
         });
 
-        link.addEventListener("mouseleave", function () {
+        link.addEventListener('mouseleave', function () {
           isHovering2 = false;
           targetScale = 1.0;
           targetBorderWidth = 1;
@@ -197,7 +196,6 @@ export const Slice = () => {
 
   return (
     <Fragment>
-
       <Meta title={title} prefix="Projects" description={description} />
       <CustomCursor />
       <CustomCursorCore />
@@ -226,13 +224,15 @@ export const Slice = () => {
         </ProjectSection>
         <ProjectSection light>
           <ProjectSectionContent>
-
             <ProjectTextRow>
               <ProjectSectionHeading>How It All Started</ProjectSectionHeading>
               <ProjectSectionText>
-                Helios was born from my struggle for discipline and the ambition to help others facing similar struggles.  The app provides a robust toolkit for individuals looking to enhance their productivity, physicality, and mental acuity.  If successful, Helios will aid users on the journey of realizing their full potential.
+                Helios was born from my struggle for discipline and the ambition to help
+                others facing similar struggles. The app provides a robust toolkit for
+                individuals looking to enhance their productivity, physicality, and mental
+                acuity. If successful, Helios will aid users on the journey of realizing
+                their full potential.
               </ProjectSectionText>
-
             </ProjectTextRow>
             <Image
               srcSet={[sliceSlides, sliceSlidesLarge]}
@@ -247,10 +247,12 @@ export const Slice = () => {
             <div className={styles.imagesText}>
               <ProjectSectionHeading>Bringing it together</ProjectSectionHeading>
               <ProjectSectionText>
-                I aimed to integrate the best features from existing time management, fitness, and motivational apps, and enhance them with AI.
+                I aimed to integrate the best features from existing time management,
+                fitness, and motivational apps, and enhance them with AI.
               </ProjectSectionText>
               <ProjectSectionText>
-                Helios achieves this all while maintaining a simple, clean, and easy to use user interface.
+                Helios achieves this all while maintaining a simple, clean, and easy to
+                use user interface.
               </ProjectSectionText>
             </div>
             <div className={styles.sidebarImages}>
@@ -324,7 +326,8 @@ export const Slice = () => {
             <ProjectTextRow center centerMobile noMargin>
               <ProjectSectionHeading>Project Release</ProjectSectionHeading>
               <ProjectSectionText>
-                Completion of this project is on the horizon. Expect this page to be updated with comprehensive details soon.
+                Completion of this project is on the horizon. Expect this page to be
+                updated with comprehensive details soon.
               </ProjectSectionText>
             </ProjectTextRow>
           </ProjectSectionContent>

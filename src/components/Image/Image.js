@@ -179,8 +179,8 @@ const ImageElements = ({
           decoding="async"
           src={showFullRes ? src.src : undefined}
           srcSet={showFullRes ? srcSetString : undefined}
-          width={src.width}
-          height={src.height}
+          width={src?.width}
+          height={src?.height}
           alt={alt}
           sizes={sizes}
           {...rest}
@@ -207,5 +207,5 @@ const ImageElements = ({
 };
 
 function getIsVideo(src) {
-  return typeof src.src === 'string' && src.src.endsWith('.mp4');
+  return typeof src?.src === 'string' && src.src.endsWith('.mp4');
 }
