@@ -19,7 +19,6 @@ import sprTexturePlaceholder from 'assets/spr-lesson-builder-dark-placeholder.jp
 import rocketEngine from 'assets/rocket-engine-dark-large.jpg';
 import styles from './List.module.css';
 import React, { useRef, useState, useEffect } from 'react';
-// import { Footer } from 'components/Footer';
 import { Heading } from 'components/Heading';
 import { DecoderText } from 'components/DecoderText';
 import { Input } from 'components/Input';

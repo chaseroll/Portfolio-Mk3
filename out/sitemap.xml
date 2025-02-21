@@ -20,11 +20,23 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://next-pop-git-main-nikos-perros-projects.vercel.app//projects/avata/</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://next-pop-git-main-nikos-perros-projects.vercel.app//projects/binnr/</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://next-pop-git-main-nikos-perros-projects.vercel.app//projects/digital-dev/</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://next-pop-git-main-nikos-perros-projects.vercel.app//projects/helios/</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://next-pop-git-main-nikos-perros-projects.vercel.app//projects/indomitable/</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
@@ -40,11 +52,39 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://next-pop-git-main-nikos-perros-projects.vercel.app//projects/valqora/</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://next-pop-git-main-nikos-perros-projects.vercel.app//articles/eagle-scout-letter</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://next-pop-git-main-nikos-perros-projects.vercel.app//articles/enc-port</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://next-pop-git-main-nikos-perros-projects.vercel.app//articles/hello-world copy</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://next-pop-git-main-nikos-perros-projects.vercel.app//articles/hello-world</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://next-pop-git-main-nikos-perros-projects.vercel.app//articles/humans-and-ai</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://next-pop-git-main-nikos-perros-projects.vercel.app//articles/lament-of-academia</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://next-pop-git-main-nikos-perros-projects.vercel.app//articles/parkinsons-syndrome</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://next-pop-git-main-nikos-perros-projects.vercel.app//articles/thinking-in-words</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
