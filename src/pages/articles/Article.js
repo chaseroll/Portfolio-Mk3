@@ -177,15 +177,15 @@ export const Article = ({ posts, featured, id, sectionRef, visible }) => {
   const isSingleColumn = width <= singleColumnWidth;
   const searchText = useFormInput('');
   const [menuShow, setMenuShow] = useState(false);
-  const [value, setValue] = useState(2); // THIS DISPLAYS NUMBER OF INITIAL SKELETON POSTS
+  const [value, setValue] = useState(3); // THIS DISPLAYS NUMBER OF INITIAL SKELETON POSTS
   const [enter, setEnter] = useState(false);
   const [leave, setLeave] = useState(false);
-  const [full, setFull] = useState(false);
+  // const [full, setFull] = useState(false);
   const [filterType, setFilterType] = useState('');
 
-  useEffect(() => {
-    if (value >= 1) setFull(true); // Controls when Load More Button is hidden.
-  }, [value]);
+  // useEffect(() => {
+  //   if (value >= posts.length) setFull(true); // Controls when Load More Button is hidden.
+  // }, [value]);
 
   const postsHeader = (
     <header className={styles.header}>
@@ -283,44 +283,52 @@ export const Article = ({ posts, featured, id, sectionRef, visible }) => {
     </header>
   );
 
-  const checkFunction = item => {
-    return (
-      String(item.title).toLowerCase().includes(searchText.value.toLowerCase()) ||
-      String(item.abstract).toLowerCase().includes(searchText.value.toLowerCase())
-    );
-  };
+  // const checkFunction = item => {
+  //   return (
+  //     String(item.title).toLowerCase().includes(searchText.value.toLowerCase()) ||
+  //     String(item.abstract).toLowerCase().includes(searchText.value.toLowerCase())
+  //   );
+  // };
+  // Filter posts based on search and type
+  const filteredPosts = posts
+    .filter(
+      item =>
+        String(item.title).toLowerCase().includes(searchText.value.toLowerCase()) ||
+        String(item.abstract).toLowerCase().includes(searchText.value.toLowerCase())
+    )
+    .filter(item => String(item.type).includes(filterType));
+
+  console.log(filteredPosts);
 
   const postList = (
     <div>
       <div className={styles.list}>
-        {/* {!isSingleColumn && postsHeader} */}
-        {posts
-          .filter(checkFunction)
-          .filter(item => String(item.type).includes(filterType))
-          // .slice(0, value)
-          .map(({ slug, ...post }, index) => (
-            <ArticlesPost key={slug} slug={slug} index={index} {...post} />
-          ))}
-        {searchText.value == '' &&
+        {!isSingleColumn && postsHeader}
+        {filteredPosts?.slice(0, value).map(({ slug, ...post }, index) => (
+          <ArticlesPost key={slug} slug={slug} index={index} {...post} />
+        ))}
+        {/* {searchText.value == '' &&
           Array(value)
             .fill()
-            .map((skeleton, index) => <SkeletonPost key={index} />)}
+            .map((skeleton, index) => <SkeletonPost key={index} />)} */}
       </div>
-      <Button
-        iconHoverShift
-        iconEnd="arrowDown"
-        style={{
-          marginTop: '20px',
-          transition: 'all 0.4s ease',
-          opacity: full ? '0' : '1',
-        }}
-        onClick={e => {
-          // e.preventDefault();
-          setValue(prev => prev + 2);
-        }}
-      >
-        LOAD MORE
-      </Button>
+      {value >= posts.length || !filteredPosts.length ? null : (
+        <Button
+          iconHoverShift
+          iconEnd="arrowDown"
+          style={{
+            marginTop: '20px',
+            transition: 'all 0.4s ease',
+            // opacity: full ? '0' : '1',
+          }}
+          onClick={e => {
+            // e.preventDefault();
+            setValue(prev => prev + 2);
+          }}
+        >
+          LOAD MORE
+        </Button>
+      )}
     </div>
   );
 
