@@ -169,11 +169,11 @@ export const Home = () => {
       const cursor2 = document.querySelector('.custom-cursor-2');
       const darkMode = isDarkMode();
 
-      cursor1.style.backgroundColor = darkMode ? 'white' : 'black';
+      if (cursor1?.style) cursor1.style.backgroundColor = darkMode ? 'white' : 'black';
       let cursorColor2 = darkMode
         ? `rgba(255, 255, 255, ${currentBorderOpacity})`
         : `rgba(0, 0, 0, ${currentBorderOpacity})`;
-      cursor2.style.borderColor = cursorColor2;
+      if (cursor2?.style) cursor2.style.borderColor = cursorColor2;
     }
 
     function lerp(a, b, t) {
@@ -226,8 +226,8 @@ export const Home = () => {
     window.addEventListener('mousemove', e => {
       const cursor2 = document.querySelector('.custom-cursor-2');
       const cursor1 = document.querySelector('.custom-cursor');
-      if (cursor1) cursor1.style.opacity = 1;
-      if (cursor2) cursor2.style.opacity = 1;
+      if (cursor1?.style) cursor1.style.opacity = 1;
+      if (cursor2?.style) cursor2.style.opacity = 1;
       const widthRatio = window.innerWidth / prevWindowWidth;
       mouseX = e.clientX - 16 * widthRatio;
       mouseY = e.clientY - 16;

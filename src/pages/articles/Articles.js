@@ -31,7 +31,7 @@ import { CustomCursorCore } from 'components/CustomCursorCore';
 import { Icon } from 'components/Icon';
 // import { getStaticProps } from './index.page';
 
-const ArticleType = ["Engineering", "Electronics", "Computer Science", "Chemical"];
+const ArticleType = ['Engineering', 'Electronics', 'Computer Science', 'Chemical'];
 
 const ArticlesPost = ({
   slug,
@@ -83,7 +83,6 @@ const ArticlesPost = ({
             placeholder={{ src: `${banner.split('.')[0]}-placeholder.jpg` }}
             alt=""
             role="presentation"
-
           />
         </div>
       )}
@@ -123,8 +122,6 @@ const ArticlesPost = ({
     </article>
   );
 };
-
-
 
 const SkeletonPost = ({ index }) => {
   return (
@@ -173,7 +170,6 @@ function getDelay(delayMs, offset = numToMs(0), multiplier = 1) {
 const initDelay = tokens.base.durationS;
 
 export const Articles = ({ posts, featured }) => {
-
   const { width } = useWindowSize();
   const singleColumnWidth = 1190;
   const isSingleColumn = width <= singleColumnWidth;
@@ -181,11 +177,10 @@ export const Articles = ({ posts, featured }) => {
   const [menuShow, setMenuShow] = useState(false);
 
   useEffect(() => {
-
     let isHovering1 = false;
     let isHovering2 = false;
     const LERP_SCALE = 0.15;
-    const LERP_SCALE_SLOW = 0.14;  // New: Slower lerp scale
+    const LERP_SCALE_SLOW = 0.14; // New: Slower lerp scale
 
     let currentBorderOpacity = 1;
     let targetBorderOpacity = 1;
@@ -203,11 +198,11 @@ export const Articles = ({ posts, featured }) => {
       const cursor2 = document.querySelector('.custom-cursor-2');
       const darkMode = isDarkMode();
 
-      cursor1.style.backgroundColor = darkMode ? "white" : "black";
+      if (cursor1?.style) cursor1.style.backgroundColor = darkMode ? 'white' : 'black';
       let cursorColor2 = darkMode
         ? `rgba(255, 255, 255, ${currentBorderOpacity})`
         : `rgba(0, 0, 0, ${currentBorderOpacity})`;
-      cursor2.style.borderColor = cursorColor2;
+      if (cursor2?.style) cursor2.style.borderColor = cursorColor2;
     }
 
     function lerp(a, b, t) {
@@ -225,7 +220,6 @@ export const Articles = ({ posts, featured }) => {
     let prevCursorY2 = 0;
     let prevWindowWidth = window.innerWidth;
 
-
     function update() {
       if (window.angular) {
         return;
@@ -241,7 +235,7 @@ export const Articles = ({ posts, featured }) => {
       prevCursorY2 = lerp(prevCursorY2, mouseY, LERP_SCALE * 3);
 
       const transform1 = `translate3D(${prevCursorX1}px, ${prevCursorY1}px, 0) scale(1.0)`;
-      cursor1.style.transform = transform1;
+      if (cursor1?.style) cursor1.style.transform = transform1;
 
       let scaleLerpScale = isHovering1 && isHovering2 ? LERP_SCALE_SLOW : LERP_SCALE;
       scale = lerp(scale, targetScale, scaleLerpScale);
@@ -249,22 +243,20 @@ export const Articles = ({ posts, featured }) => {
       currentBorderOpacity = lerp(currentBorderOpacity, targetBorderOpacity, LERP_SCALE);
 
       const transform2 = `translate3D(${prevCursorX2}px, ${prevCursorY2}px, 0) scale(${scale})`;
-      cursor2.style.transform = transform2;
-      cursor2.style.borderWidth = `${currentBorderWidth}px`;
+      if (cursor2?.style) cursor2.style.transform = transform2;
+      if (cursor2?.style) cursor2.style.borderWidth = `${currentBorderWidth}px`;
 
       updateCursors();
 
       requestAnimationFrame(update);
     }
 
-
-
-    window.addEventListener('mousemove', (e) => {
+    window.addEventListener('mousemove', e => {
       const cursor2 = document.querySelector('.custom-cursor-2');
       const cursor1 = document.querySelector('.custom-cursor');
 
-      cursor1.style.opacity = 1;
-      cursor2.style.opacity = 1;
+      if (cursor1?.style) cursor1.style.opacity = 1;
+      if (cursor2?.style) cursor2.style.opacity = 1;
       const widthRatio = window.innerWidth / prevWindowWidth;
       mouseX = e.clientX - 16 * widthRatio;
       mouseY = e.clientY - 16;
@@ -277,14 +269,14 @@ export const Articles = ({ posts, featured }) => {
       const link = document.querySelectorAll('button');
 
       button.forEach(function (button) {
-        button.addEventListener("mouseenter", function () {
+        button.addEventListener('mouseenter', function () {
           isHovering2 = true;
           targetScale = 1.5;
           targetBorderWidth = 15.5;
           targetBorderOpacity = 0.5;
         });
 
-        button.addEventListener("mouseleave", function () {
+        button.addEventListener('mouseleave', function () {
           isHovering2 = false;
           targetScale = 1.0;
           targetBorderWidth = 1;
@@ -293,14 +285,14 @@ export const Articles = ({ posts, featured }) => {
       });
 
       link.forEach(function (link) {
-        link.addEventListener("mouseenter", function () {
+        link.addEventListener('mouseenter', function () {
           isHovering2 = true;
           targetScale = 1.5;
           targetBorderWidth = 15.5;
           targetBorderOpacity = 0.5;
         });
 
-        link.addEventListener("mouseleave", function () {
+        link.addEventListener('mouseleave', function () {
           isHovering2 = false;
           targetScale = 1.0;
           targetBorderWidth = 1;
@@ -343,51 +335,57 @@ export const Articles = ({ posts, featured }) => {
           className={styles.button}
           data-visible={true}
           style={{
-            paddingLeft: "0",
-            paddingRight: "0",
-            textAlign: "center"
+            paddingLeft: '0',
+            paddingRight: '0',
+            textAlign: 'center',
           }}
-          onClick={(e) => {
+          onClick={e => {
             // e.preventDefault();
             setMenuShow(!menuShow);
           }}
         >
-          <Icon icon="filter" style={{
-            width: "30px",
-            height: "30px",
-            margin: "0",
-            marginLeft: "10px",
-            padding: ""
-          }} />
+          <Icon
+            icon="filter"
+            style={{
+              width: '30px',
+              height: '30px',
+              margin: '0',
+              marginLeft: '10px',
+              padding: '',
+            }}
+          />
         </Button>
-        <div className={styles.modal} style={{
-          position: "absolute",
-          right: 10,
-          top: menuShow ? "70px" : "60px",
-          opacity: menuShow ? 1 : 0,
-          zIndex: menuShow ? 1000 : -1000,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "flex-start",
-          alignItems: "flex-start",
-          height: "auto",
-          transition: "all 0.2s ease-in"
-        }}
-          onMouseLeave={(e) => {
+        <div
+          className={styles.modal}
+          style={{
+            position: 'absolute',
+            right: 10,
+            top: menuShow ? '70px' : '60px',
+            opacity: menuShow ? 1 : 0,
+            zIndex: menuShow ? 1000 : -1000,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'flex-start',
+            alignItems: 'flex-start',
+            height: 'auto',
+            transition: 'all 0.2s ease-in',
+          }}
+          onMouseLeave={e => {
             // e.preventDefault();
             setMenuShow(false);
           }}
         >
           {ArticleType.map((item, idx) => {
             return (
-              <div key={idx} style={{
-                position: "relative",
-                paddingTop: "10px",
-                paddingBottom: "10px"
-              }}>
-                <Button secondary as="button" style={{
-
-                }}>
+              <div
+                key={idx}
+                style={{
+                  position: 'relative',
+                  paddingTop: '10px',
+                  paddingBottom: '10px',
+                }}
+              >
+                <Button secondary as="button" style={{}}>
                   {item}
                 </Button>
               </div>
@@ -398,29 +396,31 @@ export const Articles = ({ posts, featured }) => {
     </header>
   );
 
-  const checkFunction = (item) => {
-    return (String(item.title).toLowerCase().includes(searchText.value) || String(item.abstract).toLowerCase().includes(searchText.value));
+  const checkFunction = item => {
+    return (
+      String(item.title).toLowerCase().includes(searchText.value) ||
+      String(item.abstract).toLowerCase().includes(searchText.value)
+    );
   };
   const filteredPosts = posts.filter(checkFunction);
   const postList = (
     <div className={styles.list}>
       {!isSingleColumn && postsHeader}
       {
-  <>
-    {filteredPosts.length > 0 ? (
-      filteredPosts.map(({ slug, ...post }, index) => (
-        <ArticlesPost key={slug} slug={slug} index={index} {...post} />
-      ))
-    ) : (
-      <p>No articles available at the moment.</p>  // Fallback message
-    )}
-  </>
-}
-      {searchText.value == '' && Array(6)
-        .fill()
-        .map((skeleton, index) => (
-          <SkeletonPost key={index} />
-        ))}
+        <>
+          {filteredPosts.length > 0 ? (
+            filteredPosts.map(({ slug, ...post }, index) => (
+              <ArticlesPost key={slug} slug={slug} index={index} {...post} />
+            ))
+          ) : (
+            <p>No articles available at the moment.</p> // Fallback message
+          )}
+        </>
+      }
+      {searchText.value == '' &&
+        Array(6)
+          .fill()
+          .map((skeleton, index) => <SkeletonPost key={index} />)}
     </div>
   );
 

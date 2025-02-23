@@ -7,9 +7,8 @@ import gamestackTexture2 from 'assets/gamestack-list.jpg';
 import gamestackTextureLarge from 'assets/gamestack-login-large.jpg';
 import gamestackTexturePlaceholder from 'assets/gamestack-login-placeholder.jpg';
 import gamestackTexture from 'assets/gamestack-login.jpg';
-import sliceTextureLarge from 'assets/slice-app-large.jpg';
-import sliceTexturePlaceholder from 'assets/slice-app-placeholder.jpg';
-import sliceTexture from 'assets/slice-app.jpg';
+import sliceTexture from 'assets/avata-stack.png';
+import avataSliceTexture from 'assets/avata-banner.png';
 import valqora from 'assets/valqora.png';
 import valqora1 from 'assets/valqora-1.png';
 import binner from 'assets/binner.png';
@@ -75,7 +74,7 @@ export const List = props => {
       sectionRef: projectThree,
       index: 3,
       title: 'Valqora',
-      alternative: false,
+      alternative: true,
       description:
         'A motivational brand with 32.5K followers, sharing ideas, refining them in real time, and building toward something greater.',
       buttonText: 'View project',
@@ -118,28 +117,7 @@ export const List = props => {
         ],
       },
     },
-    {
-      id: 'project-4',
-      sectionRef: projectFour,
-      index: 4,
-      title: 'Indomitable',
-      alternative: true,
-      description:
-        'A clean, high-performance energy drink designed to fuel both mind and body—without compromise.',
-      buttonText: 'View project',
-      buttonLink: '/projects/indomitable',
-      type: 'Engineering',
-      model: {
-        type: 'laptop',
-        alt: 'Indomitable Drink',
-        textures: [
-          {
-            srcSet: [indomitable, indomitable],
-            placeholder: indomitable,
-          },
-        ],
-      },
-    },
+
     {
       id: 'project-2',
       sectionRef: projectTwo,
@@ -167,6 +145,54 @@ export const List = props => {
       },
     },
     {
+      id: 'project-4',
+      sectionRef: projectFour,
+      index: 4,
+      title: 'Indomitable',
+      alternative: false,
+      description:
+        'A clean, high-performance energy drink designed to fuel both mind and body—without compromise.',
+      buttonText: 'View project',
+      buttonLink: '/projects/indomitable',
+      type: 'Engineering',
+      model: {
+        type: 'laptop',
+        alt: 'Indomitable Drink',
+        textures: [
+          {
+            srcSet: [indomitable, indomitable],
+            placeholder: indomitable,
+          },
+        ],
+      },
+    },
+    {
+      id: 'project-6',
+      sectionRef: projectSix,
+      index: 6,
+      title: 'Avata',
+      alternative: true,
+      description:
+        'An entrepreneurial dive into event hosting—turning strategy, logistics, and marketing into a profitable experience.',
+      buttonText: 'View project',
+      buttonLink: '/projects/avata',
+      type: 'Computer Science',
+      model: {
+        type: 'phone',
+        alt: 'Avata Events',
+        textures: [
+          {
+            srcSet: [sliceTexture],
+            placeholder: sliceTexture,
+          },
+          {
+            srcSet: [avataSliceTexture],
+            placeholder: avataSliceTexture,
+          },
+        ],
+      },
+    },
+    {
       id: 'project-1',
       sectionRef: projectOne,
       index: 1,
@@ -184,28 +210,6 @@ export const List = props => {
           {
             srcSet: [rocketEngine, rocketEngine],
             placeholder: sprTexturePlaceholder,
-          },
-        ],
-      },
-    },
-    {
-      id: 'project-6',
-      sectionRef: projectSix,
-      index: 6,
-      title: 'Avata',
-      alternative: true,
-      description:
-        'An entrepreneurial dive into event hosting—turning strategy, logistics, and marketing into a profitable experience.',
-      buttonText: 'View project',
-      buttonLink: '/projects/avata',
-      type: 'Computer Science',
-      model: {
-        type: 'laptop',
-        alt: 'Avata Events',
-        textures: [
-          {
-            srcSet: [sliceTexture, sliceTextureLarge],
-            placeholder: sliceTexturePlaceholder,
           },
         ],
       },

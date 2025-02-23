@@ -75,12 +75,7 @@ const EarthSection = dynamic(() => import('./Earth').then(mod => mod.EarthSectio
 const title = 'Hybrid Rocket Engine';
 const description =
   'Developing Phoenix, a small hybrid rocket engine with variable thrust and precise vectoring capabilities';
-const roles = [
-  'Engineering',
-  'Electronics',
-  'Computer Science'
-  
-];
+const roles = ['Engineering', 'Electronics', 'Computer Science'];
 
 export const SmartSparrow = () => {
   const { themeId } = useTheme();
@@ -94,11 +89,10 @@ export const SmartSparrow = () => {
   };
 
   useEffect(() => {
-    
     let isHovering1 = false;
     let isHovering2 = false;
     const LERP_SCALE = 0.15;
-    const LERP_SCALE_SLOW = 0.13;  // New: Slower lerp scale
+    const LERP_SCALE_SLOW = 0.13; // New: Slower lerp scale
 
     let currentBorderOpacity = 1;
     let targetBorderOpacity = 1;
@@ -106,30 +100,30 @@ export const SmartSparrow = () => {
     let targetBorderWidth = 1;
 
     function isDarkMode() {
-      let isDark = document.body.getAttribute('data-theme')  === 'light' ? false : true; 
+      let isDark = document.body.getAttribute('data-theme') === 'light' ? false : true;
       // console.log(isDark);
       return isDark;
-  }
+    }
 
     function updateCursors() {
-        const cursor1 = document.querySelector('.custom-cursor');
-        const cursor2 = document.querySelector('.custom-cursor-2');
-        const darkMode = isDarkMode();
+      const cursor1 = document.querySelector('.custom-cursor');
+      const cursor2 = document.querySelector('.custom-cursor-2');
+      const darkMode = isDarkMode();
 
-        cursor1.style.backgroundColor = darkMode ? "white" : "black";
-        let cursorColor2 = darkMode
-            ? `rgba(255, 255, 255, ${currentBorderOpacity})`
-            : `rgba(0, 0, 0, ${currentBorderOpacity})`;
-        cursor2.style.borderColor = cursorColor2;
+      if (cursor1?.style) cursor1.style.backgroundColor = darkMode ? 'white' : 'black';
+      let cursorColor2 = darkMode
+        ? `rgba(255, 255, 255, ${currentBorderOpacity})`
+        : `rgba(0, 0, 0, ${currentBorderOpacity})`;
+      if (cursor2?.style) cursor2.style.borderColor = cursorColor2;
     }
 
     function lerp(a, b, t) {
-        return a + (b - a) * t;
+      return a + (b - a) * t;
     }
 
     let scale = 1.0;
     let targetScale = 1.0;
-    
+
     let mouseX = 0;
     let mouseY = 0;
     let prevCursorX1 = 0;
@@ -138,88 +132,85 @@ export const SmartSparrow = () => {
     let prevCursorY2 = 0;
     let prevWindowWidth = window.innerWidth;
 
-
     function update() {
-        if (window.angular) {
-            return;
-        }
+      if (window.angular) {
+        return;
+      }
 
-        const cursor1 = document.querySelector('.custom-cursor');
-        const cursor2 = document.querySelector('.custom-cursor-2');
+      const cursor1 = document.querySelector('.custom-cursor');
+      const cursor2 = document.querySelector('.custom-cursor-2');
 
-        prevCursorX1 = lerp(prevCursorX1, mouseX, LERP_SCALE * 4);
-        prevCursorY1 = lerp(prevCursorY1, mouseY, LERP_SCALE * 4);
+      prevCursorX1 = lerp(prevCursorX1, mouseX, LERP_SCALE * 4);
+      prevCursorY1 = lerp(prevCursorY1, mouseY, LERP_SCALE * 4);
 
-        prevCursorX2 = lerp(prevCursorX2, mouseX, LERP_SCALE * 3);
-        prevCursorY2 = lerp(prevCursorY2, mouseY, LERP_SCALE * 3);
+      prevCursorX2 = lerp(prevCursorX2, mouseX, LERP_SCALE * 3);
+      prevCursorY2 = lerp(prevCursorY2, mouseY, LERP_SCALE * 3);
 
-        const transform1 = `translate3D(${prevCursorX1}px, ${prevCursorY1}px, 0) scale(1.0)`;
-        cursor1.style.transform = transform1;
+      const transform1 = `translate3D(${prevCursorX1}px, ${prevCursorY1}px, 0) scale(1.0)`;
+      if (cursor1?.style) cursor1.style.transform = transform1;
 
-        let scaleLerpScale = isHovering1 && isHovering2 ? LERP_SCALE_SLOW : LERP_SCALE;
-        scale = lerp(scale, targetScale, scaleLerpScale);
-        currentBorderWidth = lerp(currentBorderWidth, targetBorderWidth, LERP_SCALE);
-        currentBorderOpacity = lerp(currentBorderOpacity, targetBorderOpacity, LERP_SCALE);
+      let scaleLerpScale = isHovering1 && isHovering2 ? LERP_SCALE_SLOW : LERP_SCALE;
+      scale = lerp(scale, targetScale, scaleLerpScale);
+      currentBorderWidth = lerp(currentBorderWidth, targetBorderWidth, LERP_SCALE);
+      currentBorderOpacity = lerp(currentBorderOpacity, targetBorderOpacity, LERP_SCALE);
 
-        const transform2 = `translate3D(${prevCursorX2}px, ${prevCursorY2}px, 0) scale(${scale})`;
-        cursor2.style.transform = transform2;
-        cursor2.style.borderWidth = `${currentBorderWidth}px`;
+      const transform2 = `translate3D(${prevCursorX2}px, ${prevCursorY2}px, 0) scale(${scale})`;
+      if (cursor2?.style) cursor2.style.transform = transform2;
+      if (cursor2?.style) cursor2.style.borderWidth = `${currentBorderWidth}px`;
 
-        updateCursors();
+      updateCursors();
 
-        requestAnimationFrame(update);
+      requestAnimationFrame(update);
     }
 
-    
+    window.addEventListener('mousemove', e => {
+      const cursor2 = document.querySelector('.custom-cursor-2');
+      const cursor1 = document.querySelector('.custom-cursor');
 
-    window.addEventListener('mousemove', (e) => {
-        const cursor2 = document.querySelector('.custom-cursor-2');
-        const cursor1 = document.querySelector('.custom-cursor');
-
-        cursor1.style.opacity = 1;
-        cursor2.style.opacity = 1;
-        const widthRatio = window.innerWidth / prevWindowWidth;
-        mouseX = e.clientX - 16 * widthRatio;
-        mouseY = e.clientY - 16;
-        prevWindowWidth = window.innerWidth;
+      if (cursor1?.style) cursor1.style.opacity = 1;
+      if (cursor2?.style) cursor2.style.opacity = 1;
+      const widthRatio = window.innerWidth / prevWindowWidth;
+      mouseX = e.clientX - 16 * widthRatio;
+      mouseY = e.clientY - 16;
+      prevWindowWidth = window.innerWidth;
     });
 
     function setupCursors() {
-        // const cursor1 = document.querySelector('.custom-cursor');
-        const button = document.querySelectorAll('a');
-        const link = document.querySelectorAll('button');
+      // const cursor1 = document.querySelector('.custom-cursor');
+      const button = document.querySelectorAll('a');
+      const link = document.querySelectorAll('button');
 
-        button.forEach(function (button) {
-            button.addEventListener("mouseenter", function () {
-                isHovering2 = true;
-                targetScale = 1.5;
-                targetBorderWidth = 15.5;
-                targetBorderOpacity = 0.5;
-            });
-
-            button.addEventListener("mouseleave", function () {
-                isHovering2 = false;
-                targetScale = 1.0;
-                targetBorderWidth = 1;
-                targetBorderOpacity = 1;
-            });
+      button.forEach(function (button) {
+        button.addEventListener('mouseenter', function () {
+          isHovering2 = true;
+          targetScale = 1.5;
+          targetBorderWidth = 15.5;
+          targetBorderOpacity = 0.5;
         });
 
-        link.forEach(function (link) {
-            link.addEventListener("mouseenter", function () {
-                isHovering2 = true;
-                targetScale = 1.5;
-                targetBorderWidth = 15.5;
-                targetBorderOpacity = 0.5;
-            });
-
-            link.addEventListener("mouseleave", function () {
-                isHovering2 = false;
-                targetScale = 1.0;
-                targetBorderWidth = 1;
-                targetBorderOpacity = 1;
-            });
+        button.addEventListener('mouseleave', function () {
+          isHovering2 = false;
+          targetScale = 1.0;
+          targetBorderWidth = 1;
+          targetBorderOpacity = 1;
         });
+      });
+
+      link.forEach(function (link) {
+        link.addEventListener('mouseenter', function () {
+          isHovering2 = true;
+          targetScale = 1.5;
+          targetBorderWidth = 15.5;
+          targetBorderOpacity = 0.5;
+        });
+
+        link.addEventListener('mouseleave', function () {
+          isHovering2 = false;
+          targetScale = 1.0;
+          targetBorderWidth = 1;
+          targetBorderOpacity = 1;
+        });
+      });
     }
 
     setupCursors();
@@ -235,7 +226,7 @@ export const SmartSparrow = () => {
     // });
 
     update();
-  },[]);
+  }, []);
 
   return (
     <Fragment>
@@ -259,7 +250,10 @@ export const SmartSparrow = () => {
           <ProjectTextRow>
             <ProjectSectionHeading>How It All Started</ProjectSectionHeading>
             <ProjectSectionText>
-            Fascination with aerospace and inspiration from friends spurred me to begin experimenting with building my own rocket engines. The Journey began with the review of textbooks like Rocket Propulsion Elements and the creation of some preliminary sketches.
+              Fascination with aerospace and inspiration from friends spurred me to begin
+              experimenting with building my own rocket engines. The Journey began with
+              the review of textbooks like Rocket Propulsion Elements and the creation of
+              some preliminary sketches.
             </ProjectSectionText>
           </ProjectTextRow>
         </ProjectSection>
@@ -283,9 +277,8 @@ export const SmartSparrow = () => {
             />
           </ProjectSectionContent>
         </ProjectSection>
-        
-        <ProjectSection>
-        </ProjectSection>
+
+        <ProjectSection></ProjectSection>
 
         {/* <ProjectSection light={isDark}>
           <ProjectSectionContent>
@@ -369,9 +362,11 @@ export const SmartSparrow = () => {
             <ProjectSectionColumns width="full">
               <ProjectSectionContent width="full">
                 <ProjectTextRow width="s">
-                  <ProjectSectionHeading>Variable Thrust and Vectoring</ProjectSectionHeading>
+                  <ProjectSectionHeading>
+                    Variable Thrust and Vectoring
+                  </ProjectSectionHeading>
                   <ProjectSectionText>
-                  {`Thrust vectoring is the process of manipulating the direction of an engine's thrust to steer a rocket's flight path, while variable thrust refers to the adjustment of the engine's power output to control the speed and altitude.`}
+                    {`Thrust vectoring is the process of manipulating the direction of an engine's thrust to steer a rocket's flight path, while variable thrust refers to the adjustment of the engine's power output to control the speed and altitude.`}
                   </ProjectSectionText>
                 </ProjectTextRow>
               </ProjectSectionContent>
@@ -394,7 +389,11 @@ export const SmartSparrow = () => {
             <ProjectTextRow>
               <ProjectSectionHeading>The Vision</ProjectSectionHeading>
               <ProjectSectionText>
-              Using ABS plastic for fuel and Liquid Nitrous Oxide as its oxidizer, the goal was to create a compact hybrid rocket engine capable of variable thrust and precise vectoring. Designed for performance and efficiency, it is estimated that Phoenix will produce approximately 1100N of thrust for 7s
+                Using ABS plastic for fuel and Liquid Nitrous Oxide as its oxidizer, the
+                goal was to create a compact hybrid rocket engine capable of variable
+                thrust and precise vectoring. Designed for performance and efficiency, it
+                is estimated that Phoenix will produce approximately 1100N of thrust for
+                7s
               </ProjectSectionText>
             </ProjectTextRow>
             <Image
@@ -419,11 +418,11 @@ export const SmartSparrow = () => {
           <ProjectSectionColumns>
             <ProjectSectionContent>
               <ProjectTextRow>
-                <ProjectSectionHeading>
-                  Whats Next?
-                </ProjectSectionHeading>
+                <ProjectSectionHeading>Whats Next?</ProjectSectionHeading>
                 <ProjectSectionText>
-                I am now preparing to assemble the engine and gear up for the first test fire. If successful, this will validate my design and serve as a stepping stone for more complex rocketry endeavors.
+                  I am now preparing to assemble the engine and gear up for the first test
+                  fire. If successful, this will validate my design and serve as a
+                  stepping stone for more complex rocketry endeavors.
                 </ProjectSectionText>
               </ProjectTextRow>
             </ProjectSectionContent>
@@ -461,14 +460,14 @@ export const SmartSparrow = () => {
             </div>
           </ProjectSectionColumns>
         </ProjectSection>
-        
+
         <ProjectSection>
           <ProjectSectionContent>
             <ProjectTextRow center centerMobile noMargin>
               <ProjectSectionHeading>Project Release</ProjectSectionHeading>
               <ProjectSectionText>
-              Completion of this project is on the horizon. Expect this page to be updated with comprehensive details soon.
-
+                Completion of this project is on the horizon. Expect this page to be
+                updated with comprehensive details soon.
               </ProjectSectionText>
             </ProjectTextRow>
           </ProjectSectionContent>
