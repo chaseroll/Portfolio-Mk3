@@ -1,6 +1,6 @@
-import profileImgPlaceholder from 'assets/profile-placeholder.jpg';
 import profileKatakana from 'assets/katakana-profile.svg?url';
 import profileImg1 from 'assets/profile-1.jpg';
+// import profileImgPlaceholder from 'assets/profile-placeholder.jpg';
 // import Signature from 'assets/signature.png';
 // import SignaturePlaceholder from 'assets/signaturePlaceholder.png';
 // import profileImg2 from 'assets/profile-2.jpg';
@@ -163,7 +163,7 @@ export const Profile = ({ id, visible, sectionRef }) => {
                 <Image
                   reveal
                   delay={100}
-                  placeholder={profileImgPlaceholder}
+                  placeholder={profileImg1}
                   srcSet={[profileImg1, profileImg1]}
                   style={{ clipPath: 'polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%)' }}
                   sizes={`(max-width: ${media.mobile}px) 100vw, 480px`}

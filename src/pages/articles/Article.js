@@ -177,7 +177,7 @@ export const Article = ({ posts, featured, id, sectionRef, visible }) => {
   const isSingleColumn = width <= singleColumnWidth;
   const searchText = useFormInput('');
   const [menuShow, setMenuShow] = useState(false);
-  const [value, setValue] = useState(0); // THIS DISPLAYS NUMBER OF INITIAL SKELETON POSTS
+  const [value, setValue] = useState(2); // THIS DISPLAYS NUMBER OF INITIAL SKELETON POSTS
   const [enter, setEnter] = useState(false);
   const [leave, setLeave] = useState(false);
   const [full, setFull] = useState(false);
@@ -293,10 +293,11 @@ export const Article = ({ posts, featured, id, sectionRef, visible }) => {
   const postList = (
     <div>
       <div className={styles.list}>
-        {!isSingleColumn && postsHeader}
+        {/* {!isSingleColumn && postsHeader} */}
         {posts
           .filter(checkFunction)
           .filter(item => String(item.type).includes(filterType))
+          // .slice(0, value)
           .map(({ slug, ...post }, index) => (
             <ArticlesPost key={slug} slug={slug} index={index} {...post} />
           ))}
@@ -315,7 +316,7 @@ export const Article = ({ posts, featured, id, sectionRef, visible }) => {
         }}
         onClick={e => {
           // e.preventDefault();
-          setValue(value + 1);
+          setValue(prev => prev + 2);
         }}
       >
         LOAD MORE

@@ -15,12 +15,12 @@ import styles from './Slice.module.css';
 import { Image } from 'components/Image';
 import { media } from 'utils/style';
 
-import sliceSidebarAnnotationsLarge from 'assets/slice-sidebar-annotations-large.png';
-import sliceSidebarAnnotationsPlaceholder from 'assets/slice-sidebar-annotations-placeholder.png';
-import sliceSidebarAnnotations from 'assets/slice-sidebar-annotations.png';
-import sliceSidebarLayersLarge from 'assets/slice-sidebar-layers-large.png';
-import sliceSidebarLayersPlaceholder from 'assets/slice-sidebar-layers-placeholder.png';
-import sliceSidebarLayers from 'assets/slice-sidebar-layers.png';
+import nextValqora from 'assets/valq-brand.png';
+import videoSprMotionLarge from 'assets/valq-des.mp4';
+import videoSprMotionPlaceholder from 'assets/spr-motion-placeholder.jpg';
+
+import reviewLayer2 from 'assets/valq-review.png';
+import reviewLayer from 'assets/valq-review2.png';
 
 import sliceBackgroundLarge from 'assets/valqora4.png';
 import sliceBackgroundPlaceholder from 'assets/valqora4.png';
@@ -50,9 +50,9 @@ const CONTENT = {
     ],
   },
   bringingTogether: {
-    heading: 'Bringing it together',
+    heading: `What’s Next?`,
     paragraphs: [
-      'I plan to continue working with my team, posting regularly, and growing Valqora into one of the largest motivational brands across social media—and eventually expand into my own personal',
+      'I plan to continue working with my team, posting regularly, and growing Valqora into one of the largest motivational brands across social media—and eventually expand into my own personal brand.',
     ],
   },
 };
@@ -99,45 +99,65 @@ export const Slice = () => {
                 <p key={index}>{paragraph}</p>
               ))}
             </ProjectTextRow>
-            <ProjectSectionColumns centered className={styles.columns}>
-              <div className={styles.sidebarImages}>
-                <Image
-                  className={styles.sidebarImage}
-                  srcSet={[sliceSidebarLayers, sliceSidebarLayersLarge]}
-                  placeholder={sliceSidebarLayersPlaceholder}
-                  alt="The layers sidebar design, now with user profiles."
-                  sizes={`(max-width: ${media.mobile}px) 200px, 343px`}
-                />
-                <Image
-                  className={styles.sidebarImage}
-                  srcSet={[sliceSidebarAnnotations, sliceSidebarAnnotationsLarge]}
-                  placeholder={sliceSidebarAnnotationsPlaceholder}
-                  alt="Multiple user annotations on a shared layer."
-                  sizes={`(max-width: ${media.mobile}px) 200px, 343px`}
-                />
-              </div>
-            </ProjectSectionColumns>
-
+            <Image
+              raised
+              className={styles.video}
+              srcSet={[
+                { src: videoSprMotionLarge, width: 640 },
+                { src: videoSprMotionLarge, width: 1250 },
+              ]}
+              //change the video
+              placeholder={videoSprMotionPlaceholder}
+              alt="A learning designer building and deploying an interactive lesson on volcanism using the app."
+              sizes={`(max-width: ${media.mobile}px) 50vw, 50vw`}
+            />
+          </ProjectSectionContent>
+        </ProjectSection>
+        <ProjectSection>
+          <ProjectSectionColumns centered className={styles.columns}>
             <ProjectTextRow>
               <ProjectSectionHeading>{CONTENT.vision.heading}</ProjectSectionHeading>
               {CONTENT.vision.paragraphs.map((paragraph, index) => (
                 <p key={index}>{paragraph}</p>
               ))}
             </ProjectTextRow>
-          </ProjectSectionContent>
+
+            <div className={styles.sidebarImages}>
+              <Image
+                className={styles.sidebarImage}
+                srcSet={[reviewLayer]}
+                placeholder={reviewLayer}
+                alt="The layers sidebar design, now with user profiles."
+                sizes={`(max-width: ${media.mobile}px) 200px, 343px`}
+              />
+              <Image
+                className={styles.sidebarImage}
+                srcSet={[reviewLayer2]}
+                placeholder={reviewLayer2}
+                alt="Multiple user annotations on a shared layer."
+                sizes={`(max-width: ${media.mobile}px) 200px, 343px`}
+              />
+            </div>
+          </ProjectSectionColumns>
         </ProjectSection>
 
         <ProjectSection>
-          <ProjectSectionColumns centered className={styles.columns}>
-            <div className={styles.imagesText}>
-              <ProjectSectionHeading>
-                {CONTENT.bringingTogether.heading}
-              </ProjectSectionHeading>
-              {CONTENT.bringingTogether.paragraphs.map((paragraph, index) => (
-                <ProjectSectionText key={index}>{paragraph}</ProjectSectionText>
-              ))}
-            </div>
-          </ProjectSectionColumns>
+          <ProjectTextRow>
+            <ProjectSectionHeading>
+              {CONTENT.bringingTogether.heading}
+            </ProjectSectionHeading>
+            {CONTENT.bringingTogether.paragraphs.map((paragraph, index) => (
+              <ProjectSectionText key={index}>{paragraph}</ProjectSectionText>
+            ))}
+          </ProjectTextRow>
+
+          <Image
+            style={{ marginTop: '8rem' }}
+            srcSet={[nextValqora, nextValqora]}
+            placeholder={nextValqora}
+            alt="The new My Slides tab in slice, showing annotated and favorited slides."
+            sizes={`(max-width: ${media.mobile}px) 500px, (max-width: ${media.tablet}px) 800px, 1000px`}
+          />
         </ProjectSection>
       </ProjectContainer>
     </Fragment>

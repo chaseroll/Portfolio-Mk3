@@ -4,18 +4,6 @@ import imageSprBackgroundVolcanismLarge from 'assets/spr-background-volcanism-la
 import imageSprBackgroundVolcanismPlaceholder from 'assets/spr-background-volcanism-placeholder.jpg';
 import imageSprBackgroundVolcanism from 'assets/spr-background-volcanism.jpg';
 import backgroundSpr from 'assets/spr-background.jpg';
-import imageSprComponentsDarkLarge from 'assets/spr-components-dark-large.png';
-import imageSprComponentsDarkPlaceholder from 'assets/spr-components-dark-placeholder.png';
-import imageSprComponentsDark from 'assets/spr-components-dark.png';
-import imageSprComponentsLightLarge from 'assets/spr-components-light-large.png';
-import imageSprComponentsLightPlaceholder from 'assets/spr-components-light-placeholder.png';
-import imageSprComponentsLight from 'assets/spr-components-light.png';
-import imageSprDesignSystemDarkLarge from 'assets/spr-design-system-dark-large.png';
-import imageSprDesignSystemDarkPlaceholder from 'assets/spr-design-system-dark-placeholder.png';
-import imageSprDesignSystemDark from 'assets/spr-design-system-dark.png';
-import imageSprDesignSystemLightLarge from 'assets/spr-design-system-light-large.png';
-import imageSprDesignSystemLightPlaceholder from 'assets/spr-design-system-light-placeholder.png';
-import imageSprDesignSystemLight from 'assets/spr-design-system-light.png';
 import imageSprLessonBuilderDarkLarge from 'assets/spr-lesson-builder-dark-large.jpg';
 import imageSprLessonBuilderDarkPlaceholder from 'assets/spr-lesson-builder-dark-placeholder.jpg';
 import imageSprLessonBuilderDark from 'assets/spr-lesson-builder-dark.jpg';
@@ -35,6 +23,12 @@ import imageSprSchema2DarkLarge from 'assets/spr-schema-2-dark-large.png';
 import imageSprSchema2DarkPlaceholder from 'assets/spr-schema-2-dark-placeholder.png';
 import imageSprSchema2Dark from 'assets/spr-schema-2-dark.png';
 import imageSprSchema2LightLarge from 'assets/spr-schema-2-light-large.png';
+import coldEmail from 'assets/rocket-mail.png';
+import fiberSheet from 'assets/rocket-fiber.png';
+import fiberChat from 'assets/rocket-chat.png';
+import slang from 'assets/slang.png';
+import rocketMotor from 'assets/rocket-motor.png';
+import rocketBoard from 'assets/rocket-board.png';
 import imageSprSchema2LightPlaceholder from 'assets/spr-schema-2-light-placeholder.png';
 import imageSprSchema2Light from 'assets/spr-schema-2-light.png';
 import imageSprStoryboarderDarkLarge from 'assets/spr-storyboarder-dark-large.png';
@@ -74,14 +68,51 @@ const EarthSection = dynamic(() => import('./Earth').then(mod => mod.EarthSectio
 
 const title = 'Hybrid Rocket Engine';
 const description =
-  'Developing Phoenix, a small hybrid rocket engine with variable thrust and precise vectoring capabilities';
-const roles = [
-  'Engineering',
-  'Electronics',
-  'Computer Science'
-  
-];
+  'A hands-on approach to aerospace engineering, pushing the boundaries of small-scale rocketry.';
+const roles = ['Engineering', 'Electronics', 'Computer Science'];
 
+const CONTENT = {
+  howItStarted: {
+    heading: 'How It All Started',
+    paragraphs: [
+      'At 16, armed with curiosity, a few textbooks, and caffeine fueled confidence, I set out to build a functional hybrid rocket engine. Inspired by friends engaged in similar projects, I dove into Rocket Propulsion Elements, sketched early concepts, and calculated optimal dimensions. From there, I moved on to designing, modeling, and simulating in Fusion 360, as well as running internal ballistics analyses in OpenMotor.',
+    ],
+  },
+  vision: {
+    heading: 'The Vision',
+    paragraphs: [
+      'The goal was to develop a compact hybrid rocket engine capable of variable thrust and precise vectoring—essentially, a system that could adjust its power output and flight path in real time. The design utilizes 3D-printable ABS plastic as fuel and liquid nitrous oxide as an oxidizer, with an estimated thrust of 1100 N sustained for approximately seven seconds.',
+      `The engine features a 45-degree woven, high-temperature matrix carbon fiber external wall, reinforced with a stainless steel insert and a custom ablative phenolic microballoon internal lining to protect the very expensive carbon fiber from stress and thermal wear.`,
+      'The nozzle? Originally planned to be CNC-machined from titanium—but that’s still up for debate.',
+    ],
+  },
+  coldEmails: {
+    heading: 'Cold Emails & Awkward Conversations',
+    issue:
+      'Then came the issue of sourcing liquid nitrous oxide as a teenager, which led to some… interesting interactions. Let’s just say a few local dentists and motor shops had questions.',
+    paragraphs: [
+      `At 16, I had little in the way of resources, so I took a shot and reached out to various companies seeking support. Most responses were what you’d expect—a flat-out decline—but a few, specifically M-Carbo in Belarus, were surprisingly receptive. After reviewing my project and design specifications, they generously sent me multiple carbon fiber tubes free of charge, along with some hard-to-find rayon-based carbon fiber as a bonus.`,
+    ],
+  },
+  challenges: {
+    heading: 'Challenges & Considerations',
+    paragraphs: [
+      `Handling high-pressure, volatile systems presents significant risks. As I progressed, I realized that I needed a stronger engineering and analytical foundation to ensure both safety and performance. This led me to pause full-scale testing and assembly until I acquired the necessary expertise.`,
+    ],
+  },
+  whatsNext: {
+    heading: 'Whats Next?',
+    paragraphs: [
+      'I plan to resume the project once I have developed deeper technical and analytical skills in propulsion system design and engineering. In the meantime, I’m expanding my knowledge in fluid dynamics, combustion physics, and material science to ensure that when I revisit Phoenix, it will be rebuilt and reimagined with far more precision and confidence.',
+    ],
+  },
+  // projectRelease: {
+  //   heading: 'Project Release',
+  //   paragraphs: [
+  //     'Completion of this project is on the horizon. Expect this page to be updated with comprehensive details soon.',
+  //   ],
+  // },
+};
 export const SmartSparrow = () => {
   const { themeId } = useTheme();
   const { dispatch } = useAppContext();
@@ -94,11 +125,10 @@ export const SmartSparrow = () => {
   };
 
   useEffect(() => {
-    
     let isHovering1 = false;
     let isHovering2 = false;
     const LERP_SCALE = 0.15;
-    const LERP_SCALE_SLOW = 0.13;  // New: Slower lerp scale
+    const LERP_SCALE_SLOW = 0.13; // New: Slower lerp scale
 
     let currentBorderOpacity = 1;
     let targetBorderOpacity = 1;
@@ -106,30 +136,30 @@ export const SmartSparrow = () => {
     let targetBorderWidth = 1;
 
     function isDarkMode() {
-      let isDark = document.body.getAttribute('data-theme')  === 'light' ? false : true; 
+      let isDark = document.body.getAttribute('data-theme') === 'light' ? false : true;
       // console.log(isDark);
       return isDark;
-  }
+    }
 
     function updateCursors() {
-        const cursor1 = document.querySelector('.custom-cursor');
-        const cursor2 = document.querySelector('.custom-cursor-2');
-        const darkMode = isDarkMode();
+      const cursor1 = document.querySelector('.custom-cursor');
+      const cursor2 = document.querySelector('.custom-cursor-2');
+      const darkMode = isDarkMode();
 
-        cursor1.style.backgroundColor = darkMode ? "white" : "black";
-        let cursorColor2 = darkMode
-            ? `rgba(255, 255, 255, ${currentBorderOpacity})`
-            : `rgba(0, 0, 0, ${currentBorderOpacity})`;
-        cursor2.style.borderColor = cursorColor2;
+      cursor1.style.backgroundColor = darkMode ? 'white' : 'black';
+      let cursorColor2 = darkMode
+        ? `rgba(255, 255, 255, ${currentBorderOpacity})`
+        : `rgba(0, 0, 0, ${currentBorderOpacity})`;
+      cursor2.style.borderColor = cursorColor2;
     }
 
     function lerp(a, b, t) {
-        return a + (b - a) * t;
+      return a + (b - a) * t;
     }
 
     let scale = 1.0;
     let targetScale = 1.0;
-    
+
     let mouseX = 0;
     let mouseY = 0;
     let prevCursorX1 = 0;
@@ -138,88 +168,85 @@ export const SmartSparrow = () => {
     let prevCursorY2 = 0;
     let prevWindowWidth = window.innerWidth;
 
-
     function update() {
-        if (window.angular) {
-            return;
-        }
+      if (window.angular) {
+        return;
+      }
 
-        const cursor1 = document.querySelector('.custom-cursor');
-        const cursor2 = document.querySelector('.custom-cursor-2');
+      const cursor1 = document.querySelector('.custom-cursor');
+      const cursor2 = document.querySelector('.custom-cursor-2');
 
-        prevCursorX1 = lerp(prevCursorX1, mouseX, LERP_SCALE * 4);
-        prevCursorY1 = lerp(prevCursorY1, mouseY, LERP_SCALE * 4);
+      prevCursorX1 = lerp(prevCursorX1, mouseX, LERP_SCALE * 4);
+      prevCursorY1 = lerp(prevCursorY1, mouseY, LERP_SCALE * 4);
 
-        prevCursorX2 = lerp(prevCursorX2, mouseX, LERP_SCALE * 3);
-        prevCursorY2 = lerp(prevCursorY2, mouseY, LERP_SCALE * 3);
+      prevCursorX2 = lerp(prevCursorX2, mouseX, LERP_SCALE * 3);
+      prevCursorY2 = lerp(prevCursorY2, mouseY, LERP_SCALE * 3);
 
-        const transform1 = `translate3D(${prevCursorX1}px, ${prevCursorY1}px, 0) scale(1.0)`;
-        cursor1.style.transform = transform1;
+      const transform1 = `translate3D(${prevCursorX1}px, ${prevCursorY1}px, 0) scale(1.0)`;
+      cursor1.style.transform = transform1;
 
-        let scaleLerpScale = isHovering1 && isHovering2 ? LERP_SCALE_SLOW : LERP_SCALE;
-        scale = lerp(scale, targetScale, scaleLerpScale);
-        currentBorderWidth = lerp(currentBorderWidth, targetBorderWidth, LERP_SCALE);
-        currentBorderOpacity = lerp(currentBorderOpacity, targetBorderOpacity, LERP_SCALE);
+      let scaleLerpScale = isHovering1 && isHovering2 ? LERP_SCALE_SLOW : LERP_SCALE;
+      scale = lerp(scale, targetScale, scaleLerpScale);
+      currentBorderWidth = lerp(currentBorderWidth, targetBorderWidth, LERP_SCALE);
+      currentBorderOpacity = lerp(currentBorderOpacity, targetBorderOpacity, LERP_SCALE);
 
-        const transform2 = `translate3D(${prevCursorX2}px, ${prevCursorY2}px, 0) scale(${scale})`;
-        cursor2.style.transform = transform2;
-        cursor2.style.borderWidth = `${currentBorderWidth}px`;
+      const transform2 = `translate3D(${prevCursorX2}px, ${prevCursorY2}px, 0) scale(${scale})`;
+      cursor2.style.transform = transform2;
+      cursor2.style.borderWidth = `${currentBorderWidth}px`;
 
-        updateCursors();
+      updateCursors();
 
-        requestAnimationFrame(update);
+      requestAnimationFrame(update);
     }
 
-    
+    window.addEventListener('mousemove', e => {
+      const cursor2 = document.querySelector('.custom-cursor-2');
+      const cursor1 = document.querySelector('.custom-cursor');
 
-    window.addEventListener('mousemove', (e) => {
-        const cursor2 = document.querySelector('.custom-cursor-2');
-        const cursor1 = document.querySelector('.custom-cursor');
-
-        cursor1.style.opacity = 1;
-        cursor2.style.opacity = 1;
-        const widthRatio = window.innerWidth / prevWindowWidth;
-        mouseX = e.clientX - 16 * widthRatio;
-        mouseY = e.clientY - 16;
-        prevWindowWidth = window.innerWidth;
+      cursor1.style.opacity = 1;
+      cursor2.style.opacity = 1;
+      const widthRatio = window.innerWidth / prevWindowWidth;
+      mouseX = e.clientX - 16 * widthRatio;
+      mouseY = e.clientY - 16;
+      prevWindowWidth = window.innerWidth;
     });
 
     function setupCursors() {
-        // const cursor1 = document.querySelector('.custom-cursor');
-        const button = document.querySelectorAll('a');
-        const link = document.querySelectorAll('button');
+      // const cursor1 = document.querySelector('.custom-cursor');
+      const button = document.querySelectorAll('a');
+      const link = document.querySelectorAll('button');
 
-        button.forEach(function (button) {
-            button.addEventListener("mouseenter", function () {
-                isHovering2 = true;
-                targetScale = 1.5;
-                targetBorderWidth = 15.5;
-                targetBorderOpacity = 0.5;
-            });
-
-            button.addEventListener("mouseleave", function () {
-                isHovering2 = false;
-                targetScale = 1.0;
-                targetBorderWidth = 1;
-                targetBorderOpacity = 1;
-            });
+      button.forEach(function (button) {
+        button.addEventListener('mouseenter', function () {
+          isHovering2 = true;
+          targetScale = 1.5;
+          targetBorderWidth = 15.5;
+          targetBorderOpacity = 0.5;
         });
 
-        link.forEach(function (link) {
-            link.addEventListener("mouseenter", function () {
-                isHovering2 = true;
-                targetScale = 1.5;
-                targetBorderWidth = 15.5;
-                targetBorderOpacity = 0.5;
-            });
-
-            link.addEventListener("mouseleave", function () {
-                isHovering2 = false;
-                targetScale = 1.0;
-                targetBorderWidth = 1;
-                targetBorderOpacity = 1;
-            });
+        button.addEventListener('mouseleave', function () {
+          isHovering2 = false;
+          targetScale = 1.0;
+          targetBorderWidth = 1;
+          targetBorderOpacity = 1;
         });
+      });
+
+      link.forEach(function (link) {
+        link.addEventListener('mouseenter', function () {
+          isHovering2 = true;
+          targetScale = 1.5;
+          targetBorderWidth = 15.5;
+          targetBorderOpacity = 0.5;
+        });
+
+        link.addEventListener('mouseleave', function () {
+          isHovering2 = false;
+          targetScale = 1.0;
+          targetBorderWidth = 1;
+          targetBorderOpacity = 1;
+        });
+      });
     }
 
     setupCursors();
@@ -235,7 +262,7 @@ export const SmartSparrow = () => {
     // });
 
     update();
-  },[]);
+  }, []);
 
   return (
     <Fragment>
@@ -254,13 +281,23 @@ export const SmartSparrow = () => {
           description={description}
           url="https://www.smartsparrow.com/"
           roles={roles}
+          linkLabel={'Paused'}
         />
         <ProjectSection>
           <ProjectTextRow>
-            <ProjectSectionHeading>How It All Started</ProjectSectionHeading>
+            <ProjectSectionHeading>{CONTENT.howItStarted.heading}</ProjectSectionHeading>
             <ProjectSectionText>
-            Fascination with aerospace and inspiration from friends spurred me to begin experimenting with building my own rocket engines. The Journey began with the review of textbooks like Rocket Propulsion Elements and the creation of some preliminary sketches.
+              {CONTENT.howItStarted.paragraphs.map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+              ))}
             </ProjectSectionText>
+            {/* <ProjectSectionHeading>How It All Started</ProjectSectionHeading>
+            <ProjectSectionText>
+              Fascination with aerospace and inspiration from friends spurred me to begin
+              experimenting with building my own rocket engines. The Journey began with
+              the review of textbooks like Rocket Propulsion Elements and the creation of
+              some preliminary sketches.
+            </ProjectSectionText> */}
           </ProjectTextRow>
         </ProjectSection>
         <ProjectSection padding="none">
@@ -281,10 +318,16 @@ export const SmartSparrow = () => {
               sizes={`(max-width: ${media.mobile}px) 100vw, (max-width: ${media.tablet}px) 800px, 1000px`}
               alt="The aero lesson builder app dragging an audio component into a screen about plant cells."
             />
+            <ProjectImage
+              raised
+              key={themeId}
+              srcSet={[rocketBoard]}
+              placeholder={rocketBoard}
+              sizes={`(max-width: ${media.mobile}px) 100vw, (max-width: ${media.tablet}px) 800px, 1000px`}
+              alt="The aero lesson builder app dragging an audio component into a screen about plant cells."
+            />
           </ProjectSectionContent>
         </ProjectSection>
-        
-    
 
         {/* <ProjectSection light={isDark}>
           <ProjectSectionContent>
@@ -356,9 +399,11 @@ export const SmartSparrow = () => {
         <ProjectSection>
           <ProjectSectionContent>
             <ProjectTextRow>
-              <ProjectSectionHeading>The Vision</ProjectSectionHeading>
+              <ProjectSectionHeading>{CONTENT.vision.heading}</ProjectSectionHeading>
               <ProjectSectionText>
-              Using ABS plastic for fuel and Liquid Nitrous Oxide as its oxidizer, the goal was to create a compact hybrid rocket engine capable of variable thrust and precise vectoring. Designed for performance and efficiency, it is estimated that Phoenix will produce approximately 1100N of thrust for 7s
+                {CONTENT.vision.paragraphs.map((paragraph, index) => (
+                  <p key={index}>{paragraph}</p>
+                ))}
               </ProjectSectionText>
             </ProjectTextRow>
             <Image
@@ -380,54 +425,142 @@ export const SmartSparrow = () => {
           </ProjectSectionContent>
         </ProjectSection>
         {/* <ThemeProvider themeId="dark" data-invert> */}
-          
-          <ProjectSection
-            backgroundOverlayOpacity={0.5}
-            backgroundElement={
-              <Image
-                srcSet={[imageSprBackgroundVolcanism, imageSprBackgroundVolcanismLarge]}
-                placeholder={imageSprBackgroundVolcanismPlaceholder}
-                alt="A dramatic ocean scene with lava forming a new land mass."
-                sizes="100vw"
-              />
-            }
-          >
-            <ProjectSectionColumns width="full">
-              <ProjectSectionContent width="full">
-                <ProjectTextRow width="s">
-                  <ProjectSectionHeading>Variable Thrust and Vectoring</ProjectSectionHeading>
-                  <ProjectSectionText>
+
+        <ProjectSection
+          backgroundOverlayOpacity={0.5}
+          backgroundElement={
+            <Image
+              srcSet={[imageSprBackgroundVolcanism, imageSprBackgroundVolcanismLarge]}
+              placeholder={imageSprBackgroundVolcanismPlaceholder}
+              alt="A dramatic ocean scene with lava forming a new land mass."
+              sizes="100vw"
+            />
+          }
+        >
+          <ProjectSectionColumns width="full">
+            <ProjectSectionContent width="full">
+              <ProjectTextRow width="s">
+                <ProjectSectionHeading>
+                  Variable Thrust and Vectoring
+                </ProjectSectionHeading>
+                <ProjectSectionText>
                   {`Thrust vectoring is the process of manipulating the direction of an engine's thrust to steer a rocket's flight path, while variable thrust refers to the adjustment of the engine's power output to control the speed and altitude.`}
-                  </ProjectSectionText>
-                </ProjectTextRow>
-              </ProjectSectionContent>
-              <Image
-                raised
-                className={styles.video}
-                srcSet={[
-                  { src: videoSprMotion, width: 1280 },
-                  { src: videoSprMotionLarge, width: 2560 },
-                ]}
-                placeholder={videoSprMotionPlaceholder}
-                alt="A learning designer building and deploying an interactive lesson on volcanism using the app."
-                sizes={`(max-width: ${media.mobile}px) 100vw, 50vw`}
-              />
-            </ProjectSectionColumns>
-          </ProjectSection>
+                </ProjectSectionText>
+              </ProjectTextRow>
+            </ProjectSectionContent>
+            <Image
+              raised
+              className={styles.video}
+              srcSet={[
+                { src: videoSprMotion, width: 1280 },
+                { src: videoSprMotionLarge, width: 2560 },
+              ]}
+              placeholder={videoSprMotionPlaceholder}
+              alt="A learning designer building and deploying an interactive lesson on volcanism using the app."
+              sizes={`(max-width: ${media.mobile}px) 100vw, 50vw`}
+            />
+          </ProjectSectionColumns>
+        </ProjectSection>
         {/* </ThemeProvider> */}
-        
+        <ProjectSection style={{ paddingBottom: '0px' }}>
+          <ProjectSectionColumns>
+            <div className={styles.sidebarImages}>
+              <Image
+                // style={{ opacity: 0, }}
+                className={styles.sidebarImage}
+                srcSet={[fiberSheet, fiberSheet]}
+                placeholder={fiberSheet}
+                alt="Configuration options for a component."
+                sizes={`(max-width: ${media.mobile}px) 50vw, 25vw`}
+              />
+              <Image
+                style={{ opacity: 1 }}
+                className={styles.sidebarImage}
+                srcSet={[rocketMotor, rocketMotor]}
+                placeholder={rocketMotor}
+                alt="Configuration options for a component."
+                sizes={`(max-width: ${media.mobile}px) 50vw, 25vw`}
+              />
+            </div>
+
+            <ProjectSectionContent>
+              <ProjectTextRow>
+                <ProjectSectionHeading>
+                  {CONTENT.coldEmails.heading}
+                </ProjectSectionHeading>
+                <ProjectSectionText>
+                  {CONTENT.coldEmails.paragraphs.map((paragraph, index) => (
+                    <p key={index}>{paragraph}</p>
+                  ))}
+                </ProjectSectionText>
+              </ProjectTextRow>
+            </ProjectSectionContent>
+          </ProjectSectionColumns>
+        </ProjectSection>
+        <ProjectSection padding="none">
+          <ProjectSectionContent>
+            <ProjectSectionText>
+              Then came the issue of sourcing liquid nitrous oxide as a teenager, which
+              led to some… interesting interactions. Let’s just say a few local dentists
+              and motor shops had questions.
+            </ProjectSectionText>
+            <div
+              style={{
+                display: 'flex',
+                gap: '10px',
+                flexDirection: 'row',
+                alignItem: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <Image
+                style={{ opacity: 1 }}
+                className={styles.sidebarImage}
+                srcSet={[coldEmail, coldEmail]}
+                placeholder={coldEmail}
+                alt="Configuration options for text."
+                sizes={`(max-width: ${media.mobile}px) 90vw, 70vw`}
+              />
+              <Image
+                style={{ opacity: 1, width: '50%' }}
+                // className={styles.sidebarImage}
+                srcSet={[fiberChat, fiberChat]}
+                placeholder={fiberChat}
+                alt="Configuration options for text."
+                // sizes={`(max-width: ${media.mobile}px) 50%, 50%`}
+              />
+            </div>
+          </ProjectSectionContent>
+        </ProjectSection>
         <ProjectSection>
           <ProjectSectionColumns>
             <ProjectSectionContent>
               <ProjectTextRow>
                 <ProjectSectionHeading>
-                  Whats Next?
+                  {CONTENT.challenges.heading}
                 </ProjectSectionHeading>
                 <ProjectSectionText>
-                I am now preparing to assemble the engine and gear up for the first test fire. If successful, this will validate my design and serve as a stepping stone for more complex rocketry endeavors.
+                  {CONTENT.challenges.paragraphs.map((paragraph, index) => (
+                    <p key={index}>{paragraph}</p>
+                  ))}
                 </ProjectSectionText>
               </ProjectTextRow>
             </ProjectSectionContent>
+            <div className={styles.sidebarImages}>
+              <Image
+                style={{ opacity: 1 }}
+                className={styles.sidebarImage}
+                srcSet={[slang, slang]}
+                placeholder={slang}
+                alt="Configuration options for a component."
+                sizes={`(max-width: ${media.mobile}px) 50vw, 25vw`}
+              />
+            </div>
+          </ProjectSectionColumns>
+        </ProjectSection>
+
+        <ProjectSection>
+          <ProjectSectionColumns>
             <div className={styles.sidebarImages}>
               <Image
                 className={styles.sidebarImage}
@@ -460,20 +593,30 @@ export const SmartSparrow = () => {
                 sizes={`(max-width: ${media.mobile}px) 50vw, 25vw`}
               />
             </div>
+            <ProjectSectionContent>
+              <ProjectTextRow>
+                <ProjectSectionHeading>{CONTENT.whatsNext.heading}</ProjectSectionHeading>
+                <ProjectSectionText>
+                  {CONTENT.whatsNext.paragraphs.map((paragraph, index) => (
+                    <p key={index}>{paragraph}</p>
+                  ))}
+                </ProjectSectionText>
+              </ProjectTextRow>
+            </ProjectSectionContent>
           </ProjectSectionColumns>
         </ProjectSection>
-        
-        <ProjectSection>
+
+        {/* <ProjectSection>
           <ProjectSectionContent>
             <ProjectTextRow center centerMobile noMargin>
               <ProjectSectionHeading>Project Release</ProjectSectionHeading>
               <ProjectSectionText>
-              Completion of this project is on the horizon. Expect this page to be updated with comprehensive details soon.
-
+                Completion of this project is on the horizon. Expect this page to be
+                updated with comprehensive details soon.
               </ProjectSectionText>
             </ProjectTextRow>
           </ProjectSectionContent>
-        </ProjectSection>
+        </ProjectSection> */}
       </ProjectContainer>
       <Footer />
     </Fragment>

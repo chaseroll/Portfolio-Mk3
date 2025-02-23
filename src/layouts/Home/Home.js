@@ -59,16 +59,16 @@ const posts = [
       timecode: '00:01:45:20',
       slug: 'eagle-scout-letter',
     },
-    {
-      title: 'Eagle Scout Letter of Ambition',
-      abstract:
-        'A personal reflection on leadership, service, and the journey toward achieving the Eagle Scout rank.',
-      date: '2024-05-25',
-      banner: '/static/eagle-scout-banner.jpg',
-      type: 'Leadership',
-      timecode: '00:01:45:20',
-      slug: 'eagle-scout-letter',
-    },
+    // {
+    //   title: 'Eagle Scout Letter of Ambition',
+    //   abstract:
+    //     'A personal reflection on leadership, service, and the journey toward achieving the Eagle Scout rank.',
+    //   date: '2024-05-25',
+    //   banner: '/static/eagle-scout-banner.jpg',
+    //   type: 'Leadership',
+    //   timecode: '00:01:45:20',
+    //   slug: 'eagle-scout-letter',
+    // },
     {
       title: "Parkinson's Syndrome: A Personal Perspective",
       abstract:
@@ -85,7 +85,7 @@ const posts = [
     abstract:
       'A critical examination of modern educational systems and their impact on intellectual growth.',
     date: '2024-09-19',
-    banner: '/static/academia-banner.jpg',
+    banner: '/static/modern-react-css-banner.jpg',
     type: 'Education',
     featured: true,
     timecode: '00:05:30:00',
@@ -206,7 +206,7 @@ export const Home = () => {
       prevCursorY2 = lerp(prevCursorY2, mouseY, LERP_SCALE * 3);
 
       const transform1 = `translate3D(${prevCursorX1}px, ${prevCursorY1}px, 0) scale(1.0)`;
-      cursor1.style.transform = transform1;
+      if (cursor1?.style) cursor1.style.transform = transform1;
 
       let scaleLerpScale = isHovering1 && isHovering2 ? LERP_SCALE_SLOW : LERP_SCALE;
       scale = lerp(scale, targetScale, scaleLerpScale);
@@ -214,9 +214,10 @@ export const Home = () => {
       currentBorderOpacity = lerp(currentBorderOpacity, targetBorderOpacity, LERP_SCALE);
 
       const transform2 = `translate3D(${prevCursorX2}px, ${prevCursorY2}px, 0) scale(${scale})`;
-      cursor2.style.transform = transform2;
-      cursor2.style.borderWidth = `${currentBorderWidth}px`;
-
+      if (cursor2?.style) {
+        cursor2.style.transform = transform2;
+        cursor2.style.borderWidth = `${currentBorderWidth}px`;
+      }
       updateCursors();
 
       requestAnimationFrame(update);

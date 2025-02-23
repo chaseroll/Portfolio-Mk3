@@ -13,7 +13,7 @@ import sliceTexture from 'assets/slice-app.jpg';
 import valqora from 'assets/valqora.png';
 import valqora1 from 'assets/valqora-1.png';
 import binner from 'assets/binner.png';
-import indomitable from 'assets/indomitable.png';
+import indomitable from 'assets/Indomitable.png';
 
 import sprTexturePlaceholder from 'assets/spr-lesson-builder-dark-placeholder.jpg';
 import rocketEngine from 'assets/rocket-engine-dark-large.jpg';

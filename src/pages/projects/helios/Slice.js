@@ -1,17 +1,17 @@
 import sliceAnnotationLarge from 'assets/slice-annotation-large.png';
 import sliceAnnotationPlaceholder from 'assets/slice-annotation-placeholder.png';
 import sliceAnnotation from 'assets/slice-annotation.png';
-import sliceAppLarge from 'assets/slice-app-large.jpg';
-import sliceAppPlaceholder from 'assets/slice-app-placeholder.jpg';
-import sliceApp from 'assets/slice-app.jpg';
+// import sliceAppLarge from 'assets/slice-app-large.jpg';
+// import sliceAppPlaceholder from 'assets/slice-app-placeholder.jpg';
+// import sliceApp from 'assets/slice-app.jpg';
 import sliceBackgroundBarLarge from 'assets/slice-background-bar-large.jpg';
 import sliceBackgroundBarPlaceholder from 'assets/slice-background-bar-placeholder.jpg';
 import sliceBackgroundBar from 'assets/slice-background-bar.jpg';
-import sliceBackgroundLarge from 'assets/slice-background-large.jpg';
-import sliceBackgroundPlaceholder from 'assets/slice-background-placeholder.jpg';
-import sliceBackground from 'assets/slice-background.jpg';
-import sliceIrlPlaceholder from 'assets/slice-irl-placeholder.jpg';
-import sliceIrl from 'assets/slice-irl.jpg';
+// import sliceBackgroundLarge from 'assets/slice-background-large.jpg';
+// import sliceBackgroundPlaceholder from 'assets/slice-background-placeholder.jpg';
+import sliceBackground from 'assets/helios.png';
+// import sliceIrlPlaceholder from 'assets/slice-irl-placeholder.jpg';
+// import sliceIrl from 'assets/slice-irl.jpg';
 import sliceSidebarAnnotationsLarge from 'assets/slice-sidebar-annotations-large.png';
 import sliceSidebarAnnotationsPlaceholder from 'assets/slice-sidebar-annotations-placeholder.png';
 import sliceSidebarAnnotations from 'assets/slice-sidebar-annotations.png';
@@ -46,12 +46,46 @@ import { CustomCursorCore } from 'components/CustomCursorCore';
 
 const title = 'Helios App';
 const description =
-  'Creating a cross platform AI-powered app designed to elevate user productivity, physicality, and fulfillment.';
+  'An AI-powered productivity app designed to help users maximize discipline, efficiency, and personal growth.';
+
 const roles = [
   'UI / UX Design',
   'Front / Backend Development',
   'Artificial Intelligence',
 ];
+
+const CONTENT = {
+  howItStarted: {
+    heading: 'How It All Started',
+    paragraphs: [
+      'Helios was born from my struggle with discipline and the desire to help others facing similar challenges. The app provides a toolkit for individuals looking to enhance their productivity, physicality, and mental acuity. If successful, Helios will aid users in their journey toward realizing their full potential.',
+    ],
+  },
+  bringingItTogether: {
+    heading: 'Bringing it together',
+    paragraphs: [
+      'I aimed to integrate the best features from time management, fitness, nutrition, and social media apps and elevate them with AI—making it one of the first of its kind. Helios achieves this while maintaining a simple, clean, and easy-to-use interface.',
+    ],
+  },
+  professionalFeedback: {
+    heading: 'Professional Feedback',
+    paragraphs: [
+      'Throughout the design phase, I’ve engaged with UI/UX designers, developers, and successful CEOs to refine the app’s functionality and business model. This feedback has not only shaped Helios to better meet user needs but has also expanded my professional network and applied learning.',
+    ],
+  },
+  whatsNext: {
+    heading: 'Whats Next?',
+    paragraphs: [
+      'Slated for a late 2025 release under the Valqora brand, Helios is set to revolutionize personal productivity. I am currently in the process of adding additional features, polishing the user experience, and preparing post-launch support. The future is bright!',
+    ],
+  },
+  projectRelease: {
+    heading: 'Project Release',
+    paragraphs: [
+      'Completion of this project is on the horizon. Expect this page to be updated with comprehensive details soon.',
+    ],
+  },
+};
 
 export const Slice = () => {
   useEffect(() => {
@@ -202,8 +236,8 @@ export const Slice = () => {
       <ProjectContainer className={styles.slice}>
         <ProjectBackground
           src={sliceBackground}
-          srcSet={`${sliceBackground.src} 1280w, ${sliceBackgroundLarge.src} 2560w`}
-          placeholder={sliceBackgroundPlaceholder}
+          srcSet={`${sliceBackground} 1280w, ${sliceBackground} 2560w`}
+          placeholder={sliceBackground}
           opacity={0.8}
         />
         <ProjectHeader
@@ -225,14 +259,12 @@ export const Slice = () => {
         <ProjectSection light>
           <ProjectSectionContent>
             <ProjectTextRow>
-              <ProjectSectionHeading>How It All Started</ProjectSectionHeading>
-              <ProjectSectionText>
-                Helios was born from my struggle for discipline and the ambition to help
-                others facing similar struggles. The app provides a robust toolkit for
-                individuals looking to enhance their productivity, physicality, and mental
-                acuity. If successful, Helios will aid users on the journey of realizing
-                their full potential.
-              </ProjectSectionText>
+              <ProjectSectionHeading>
+                {CONTENT.howItStarted.heading}
+              </ProjectSectionHeading>
+              {CONTENT.howItStarted.paragraphs.map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+              ))}
             </ProjectTextRow>
             <Image
               srcSet={[sliceSlides, sliceSlidesLarge]}
@@ -245,15 +277,12 @@ export const Slice = () => {
         <ProjectSection>
           <ProjectSectionColumns centered className={styles.columns}>
             <div className={styles.imagesText}>
-              <ProjectSectionHeading>Bringing it together</ProjectSectionHeading>
-              <ProjectSectionText>
-                I aimed to integrate the best features from existing time management,
-                fitness, and motivational apps, and enhance them with AI.
-              </ProjectSectionText>
-              <ProjectSectionText>
-                Helios achieves this all while maintaining a simple, clean, and easy to
-                use user interface.
-              </ProjectSectionText>
+              <ProjectSectionHeading>
+                {CONTENT.bringingItTogether.heading}
+              </ProjectSectionHeading>
+              {CONTENT.bringingItTogether.paragraphs.map((paragraph, index) => (
+                <ProjectSectionText key={index}>{paragraph}</ProjectSectionText>
+              ))}
             </div>
             <div className={styles.sidebarImages}>
               <Image
@@ -296,10 +325,12 @@ export const Slice = () => {
               </div>
             </div>
             <div className={styles.gridText}>
-              <ProjectSectionHeading>Professional Feedback</ProjectSectionHeading>
-              <ProjectSectionText>
-                {`Throughout the development phase of Helios, I've engaged with industry experts, from UI/UX designers to successful CEOs, to refine the app's functionality and business approach. This invaluable feedback has not only shaped Helios to better meet user needs but has also expanded my professional network and applied learning.`}
-              </ProjectSectionText>
+              <ProjectSectionHeading>
+                {CONTENT.professionalFeedback.heading}
+              </ProjectSectionHeading>
+              {CONTENT.professionalFeedback.paragraphs.map((paragraph, index) => (
+                <ProjectSectionText key={index}>{paragraph}</ProjectSectionText>
+              ))}
             </div>
           </ProjectSectionContent>
         </ProjectSection>
@@ -307,10 +338,10 @@ export const Slice = () => {
         <ProjectSection dark>
           <ProjectSectionContent>
             <ProjectTextRow>
-              <ProjectSectionHeading>Whats Next?</ProjectSectionHeading>
-              <ProjectSectionText>
-                {`Slated for a 2024 release, Helios is set to revolutionize personal productivity. We're currently adding additional features, polishing the user experience, and preparing post-launch support. Excitement mounts as we ready Helios to be available to the public.`}
-              </ProjectSectionText>
+              <ProjectSectionHeading>{CONTENT.whatsNext.heading}</ProjectSectionHeading>
+              {CONTENT.whatsNext.paragraphs.map((paragraph, index) => (
+                <ProjectSectionText key={index}>{paragraph}</ProjectSectionText>
+              ))}
             </ProjectTextRow>
             <Image
               srcSet={[heliosNext, heliosNextLarge]}
@@ -321,17 +352,18 @@ export const Slice = () => {
           </ProjectSectionContent>
         </ProjectSection>
 
-        <ProjectSection>
+        {/* <ProjectSection>
           <ProjectSectionContent>
             <ProjectTextRow center centerMobile noMargin>
-              <ProjectSectionHeading>Project Release</ProjectSectionHeading>
-              <ProjectSectionText>
-                Completion of this project is on the horizon. Expect this page to be
-                updated with comprehensive details soon.
-              </ProjectSectionText>
+              <ProjectSectionHeading>
+                {CONTENT.projectRelease.heading}
+              </ProjectSectionHeading>
+              {CONTENT.projectRelease.paragraphs.map((paragraph, index) => (
+                <ProjectSectionText key={index}>{paragraph}</ProjectSectionText>
+              ))}
             </ProjectTextRow>
           </ProjectSectionContent>
-        </ProjectSection>
+        </ProjectSection> */}
       </ProjectContainer>
       <Footer />
     </Fragment>
