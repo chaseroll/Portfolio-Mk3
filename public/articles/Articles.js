@@ -262,7 +262,7 @@ export const Articles = ({ posts, featured }) => {
       mouseY = e.clientY - 16;
       prevWindowWidth = window.innerWidth;
     });
-
+    //deploying test
     function setupCursors() {
       // const cursor1 = document.querySelector('.custom-cursor');
       const button = document.querySelectorAll('a');
