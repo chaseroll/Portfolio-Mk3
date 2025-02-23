@@ -1,1 +1,1 @@
-export { Indomitable as default } from './Indomitable';
+export { IndomitablePage as default } from './IndomitablePage';
