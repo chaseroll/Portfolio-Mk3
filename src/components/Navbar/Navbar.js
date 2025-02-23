@@ -31,75 +31,16 @@ export function Navbar() {
     show: true,
     prevScroll: 0,
   });
-  const [current, setCurrent] = useState(null);
-  const [target, setTarget] = useState(null);
 
   const { themeId } = useTheme();
   const { menuOpen, dispatch } = useAppContext();
   const { route, asPath } = useRouter();
   const windowSize = useWindowSize();
   const headerRef = useRef();
-  const scrollTimeout = useRef(null);
   const isMobile = windowSize.width <= media.mobile || windowSize.height <= 696;
-  const scrollToHash = useScrollToHash();
 
   // Add this state to track active section
   const [activeSection, setActiveSection] = useState('');
-
-  // Add isScrolling state
-  const [isScrolling, setIsScrolling] = useState(false);
-  const scrollTimer = useRef(null);
-
-  // Modify the scroll handler to track scrolling state
-  useEffect(() => {
-    const handleScroll = () => {
-      if (scrollTimeout.current) return;
-
-      // Set scrolling to true
-      setIsScrolling(true);
-
-      // Clear previous scroll timer
-      if (scrollTimer.current) {
-        clearTimeout(scrollTimer.current);
-      }
-
-      scrollTimeout.current = window.requestAnimationFrame(() => {
-        setNavState(prev => {
-          const currentScroll = window.scrollY;
-          const scrollDelta = Math.abs(currentScroll - prev.prevScroll);
-
-          return {
-            prevScroll: currentScroll,
-            show:
-              currentScroll < prev.prevScroll || scrollDelta > 10 || currentScroll <= 50,
-          };
-        });
-
-        // Set timer to remove scrolling state after scrolling stops
-        scrollTimer.current = setTimeout(() => {
-          setIsScrolling(false);
-        }, 150); // Adjust this value to control how long to wait after scrolling stops
-
-        scrollTimeout.current = null;
-      });
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      if (scrollTimeout.current) {
-        window.cancelAnimationFrame(scrollTimeout.current);
-      }
-      if (scrollTimer.current) {
-        clearTimeout(scrollTimer.current);
-      }
-    };
-  }, []);
-
-  // Simplified current path handling
-  useEffect(() => {
-    setCurrent(asPath);
-  }, [asPath]);
 
   // Optimized smooth scroll handling
   const handleNavItemClick = useCallback(
@@ -114,12 +55,8 @@ export function Navbar() {
         if (element) {
           // Update URL without navigation
           window.history.pushState({}, '', `/#${hash}`);
-          setTarget(`#${hash}`);
-          setCurrent(`/${hash}`);
           element.scrollIntoView({ behavior: 'smooth' });
         }
-      } else {
-        setTarget(null);
       }
     },
     [route]
@@ -209,8 +146,6 @@ export function Navbar() {
   // Modify the getCurrent function
   const getCurrent = (pathname = '') => {
     if (route === '/') {
-      // Don't show active state while scrolling
-      if (isScrolling) return '';
       return pathname === activeSection ? 'page' : '';
     }
     // For other pages, keep existing logic
