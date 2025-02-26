@@ -133,7 +133,7 @@
 .navIconLink {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding: var(--spaceS);
   width: var(--space2XL);
   height: var(--space2XL);

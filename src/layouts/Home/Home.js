@@ -26,7 +26,7 @@ import { List } from 'pages/projects/list/List';
 import { Heading } from 'components/Heading';
 import { AppContext } from 'pages/_app.page';
 
-const disciplines = ['Athlete', 'Businessman', 'Innovator'];
+const disciplines = ['Entrepreneur', 'Athlete', 'Innovator'];
 
 const posts = [
     {

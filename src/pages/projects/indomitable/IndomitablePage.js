@@ -7,6 +7,7 @@ import {
   ProjectSectionColumns,
   ProjectSectionContent,
   ProjectSectionHeading,
+  ProjectSectionText,
   ProjectTextRow,
 } from 'layouts/Project';
 import indoFormula from 'assets/indo-formula.png';
@@ -18,6 +19,8 @@ import { Meta } from 'components/Meta';
 import styles from './Slice.module.css';
 import { Image } from 'components/Image';
 import { media } from 'utils/style';
+import { CustomCursor } from '../../../components/CustomCursor';
+import { CustomCursorCore } from '../../../components/CustomCursorCore';
 
 const PROJECT_DATA = {
   title: 'Indomitable',
@@ -50,6 +53,8 @@ const CONTENT = {
 export const IndomitablePage = () => {
   return (
     <Fragment>
+      <CustomCursor />
+      <CustomCursorCore />
       <ProjectContainer>
         <Meta
           title={PROJECT_DATA.title}
@@ -75,7 +80,7 @@ export const IndomitablePage = () => {
             <ProjectTextRow>
               <ProjectSectionHeading>{CONTENT.gap.heading}</ProjectSectionHeading>
               {CONTENT.gap.paragraphs.map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
+                <ProjectSectionText key={index}>{paragraph}</ProjectSectionText>
               ))}
             </ProjectTextRow>
             <div className={styles.sidebarImages} style={{ display: 'flex' }}>
@@ -97,7 +102,7 @@ export const IndomitablePage = () => {
             <ProjectTextRow>
               <ProjectSectionHeading>{CONTENT.solution.heading}</ProjectSectionHeading>
               {CONTENT.solution.paragraphs.map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
+                <ProjectSectionText key={index}>{paragraph}</ProjectSectionText>
               ))}
             </ProjectTextRow>
 
@@ -125,7 +130,7 @@ export const IndomitablePage = () => {
           <ProjectTextRow>
             <ProjectSectionHeading>{CONTENT.nextSteps.heading}</ProjectSectionHeading>
             {CONTENT.nextSteps.paragraphs.map((paragraph, index) => (
-              <p key={index}>{paragraph}</p>
+              <ProjectSectionText key={index}>{paragraph}</ProjectSectionText>
             ))}
           </ProjectTextRow>
           <Image

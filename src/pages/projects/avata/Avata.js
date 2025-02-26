@@ -20,6 +20,8 @@ import sliceBackground from 'assets/avata.png';
 import avataFeed from 'assets/avata-feedback.png';
 import avataStack from 'assets/avata-stack.png';
 import avataBanner from 'assets/avata-banner.png';
+import { CustomCursor } from '../../../components/CustomCursor';
+import { CustomCursorCore } from '../../../components/CustomCursorCore';
 
 const PROJECT_DATA = {
   title: 'Avata',
@@ -74,6 +76,8 @@ const CONTENT = {
 export const Avata = () => {
   return (
     <Fragment>
+      <CustomCursor />
+      <CustomCursorCore />
       <Meta
         title={PROJECT_DATA.title}
         prefix="Projects"

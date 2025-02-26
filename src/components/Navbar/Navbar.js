@@ -58,6 +58,7 @@ export function Navbar() {
           element.scrollIntoView({ behavior: 'smooth' });
         }
       }
+      console.log('route>>>', route);
     },
     [route]
   );
@@ -137,13 +138,24 @@ export function Navbar() {
       });
     };
 
+    if (route) {
+      const baseRoute = route.split('/')[1];
+      console.log('first', baseRoute);
+      // Find matching nav item and set active section
+      const matchingNavItem = navLinks.find(link => link.pathname.includes(baseRoute));
+      console.log('matchingNavItem', matchingNavItem);
+      if (matchingNavItem) {
+        setActiveSection(matchingNavItem.pathname);
+      }
+    }
+
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll(); // Check initial position
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, [route]);
 
-  // Modify the getCurrent function
+  // Keep the getCurrent function simple
   const getCurrent = (pathname = '') => {
     if (route === '/') {
       return pathname === activeSection ? 'page' : '';
@@ -185,7 +197,9 @@ export function Navbar() {
               <a
                 data-navbar-item
                 className={styles.navLink}
-                aria-current={getCurrent(pathname)}
+                aria-current={
+                  getCurrent(pathname) || activeSection === pathname ? 'page' : ''
+                }
                 onClick={handleNavItemClick}
               >
                 {label}
@@ -204,7 +218,9 @@ export function Navbar() {
                 <a
                   className={styles.mobileNavLink}
                   data-visible={visible}
-                  aria-current={getCurrent(pathname)}
+                  aria-current={
+                    getCurrent(pathname) || activeSection === pathname ? 'page' : ''
+                  }
                   onClick={handleMobileNavClick}
                   style={cssProps({
                     transitionDelay: numToMs(
@@ -237,42 +253,51 @@ const NavbarIcons = ({ desktop }) => (
 // Optimize NavIconLink with memo
 const NavIconLink = memo(({ label, url, icon, desktop }) => {
   const [visible, setVisible] = useState(false);
-  const timeoutRef = useRef();
-
-  const handleMouseOver = useCallback(() => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    setVisible(true);
-  }, []);
-
-  const handleMouseOut = useCallback(() => {
-    timeoutRef.current = setTimeout(() => setVisible(false), 100);
-  }, []);
-
-  useEffect(() => {
-    return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    };
-  }, []);
 
   return (
     <a
+      key={label}
       data-navbar-item={desktop || undefined}
       className={styles.navIconLink}
       aria-label={label}
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      onMouseOver={handleMouseOver}
-      onMouseOut={handleMouseOut}
+      onMouseOver={() => {
+        setVisible(true);
+      }}
+      onMouseOut={() => {
+        setVisible(false);
+      }}
     >
       <Icon className={styles.navIcon} icon={icon} />
-      {visible && (
-        <span className={styles.navSpan}>
-          <div className={styles.navAnim} data-show={visible}>
+      <span
+        className={styles.navSpan}
+        style={{
+          margin: '0',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'flex-start',
+          position: 'relative',
+          padding: '0',
+        }}
+      >
+        {visible && (
+          <div
+            style={{
+              position: 'absolute',
+              top: '-8px',
+              left: visible ? '20px' : '0px',
+              opacity: visible ? 1 : 0,
+              width: '100px',
+            }}
+            className={styles.navAnim}
+            data-show={visible}
+          >
             <DecoderText text={label} start={visible} startDelay={1000} />
           </div>
-        </span>
-      )}
+        )}
+      </span>
     </a>
   );
 });

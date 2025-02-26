@@ -22,6 +22,8 @@ import sliceBackgroundLarge from 'assets/binner.png';
 import sliceBackgroundPlaceholder from 'assets/binner.png';
 import sliceBackground from 'assets/binner.png';
 import { Meta } from 'components/Meta';
+import { CustomCursor } from '../../../components/CustomCursor';
+import { CustomCursorCore } from '../../../components/CustomCursorCore';
 
 const PROJECT_DATA = {
   title: 'Binnr',
@@ -59,6 +61,8 @@ const CONTENT = {
 export const Binnr = () => {
   return (
     <Fragment>
+      <CustomCursor />
+      <CustomCursorCore />
       <Meta
         title={PROJECT_DATA.title}
         prefix="Projects"
@@ -95,7 +99,7 @@ export const Binnr = () => {
                 {CONTENT.howItStarted.heading}
               </ProjectSectionHeading>
               {CONTENT.howItStarted.paragraphs.map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
+                <ProjectSectionText key={index}>{paragraph}</ProjectSectionText>
               ))}
             </ProjectTextRow>
             <Image
@@ -111,7 +115,7 @@ export const Binnr = () => {
             <ProjectTextRow>
               <ProjectSectionHeading>{CONTENT.vision.heading}</ProjectSectionHeading>
               {CONTENT.vision.paragraphs.map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
+                <ProjectSectionText key={index}>{paragraph}</ProjectSectionText>
               ))}
             </ProjectTextRow>
             <Image

@@ -26,6 +26,8 @@ import sliceBackgroundLarge from 'assets/valqora4.png';
 import sliceBackgroundPlaceholder from 'assets/valqora4.png';
 import sliceBackground from 'assets/valqora4.png';
 import { Meta } from 'components/Meta';
+import { CustomCursor } from '../../../components/CustomCursor';
+import { CustomCursorCore } from '../../../components/CustomCursorCore';
 
 const PROJECT_DATA = {
   title: 'Valqora',
@@ -39,8 +41,8 @@ const CONTENT = {
     heading: 'How It Started',
     paragraphs: [
       'Valqora began in 2024 as a motivational brand on social media, initially planned to support the promotion of my upcoming AI-based productivity app, Helios. Over time, however, it took on its own distinct form, evolving into a space where I share my thoughts, document what I learn, and highlight insights from others—all presented in a polished, visually engaging format.',
-      `Recently, my team and I archived all past posts on the page and are reimagining Valqora's content with a sharper focus, aligning it more effectively with my long-term vision.`,
-      'Here’s a preview of our revamped approach:',
+      "Recently, my team and I archived all past posts on the page and are reimagining Valqora's content with a sharper focus, aligning it more effectively with my long-term vision.",
+      "Here's a preview of our revamped approach:",
     ],
   },
   vision: {
@@ -50,7 +52,7 @@ const CONTENT = {
     ],
   },
   bringingTogether: {
-    heading: `What’s Next?`,
+    heading: "What's Next?",
     paragraphs: [
       'I plan to continue working with my team, posting regularly, and growing Valqora into one of the largest motivational brands across social media—and eventually expand into my own personal brand.',
     ],
@@ -60,6 +62,8 @@ const CONTENT = {
 export const Slice = () => {
   return (
     <Fragment>
+      <CustomCursor />
+      <CustomCursorCore />
       <Meta
         title={PROJECT_DATA.title}
         prefix="Projects"
@@ -96,21 +100,13 @@ export const Slice = () => {
                 {CONTENT.howItStarted.heading}
               </ProjectSectionHeading>
               {CONTENT.howItStarted.paragraphs.map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
+                <ProjectSectionText key={index}>{paragraph}</ProjectSectionText>
               ))}
             </ProjectTextRow>
-            <Image
-              raised
-              className={styles.video}
-              srcSet={[
-                { src: videoSprMotionLarge, width: 640 },
-                { src: videoSprMotionLarge, width: 1250 },
-              ]}
-              //change the video
-              placeholder={videoSprMotionPlaceholder}
-              alt="A learning designer building and deploying an interactive lesson on volcanism using the app."
-              sizes={`(max-width: ${media.mobile}px) 50vw, 50vw`}
-            />
+            <video controls className={styles.video} autoPlay>
+              <source src={videoSprMotionLarge} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </ProjectSectionContent>
         </ProjectSection>
         <ProjectSection>
@@ -118,7 +114,7 @@ export const Slice = () => {
             <ProjectTextRow>
               <ProjectSectionHeading>{CONTENT.vision.heading}</ProjectSectionHeading>
               {CONTENT.vision.paragraphs.map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
+                <ProjectSectionText key={index}>{paragraph}</ProjectSectionText>
               ))}
             </ProjectTextRow>
 

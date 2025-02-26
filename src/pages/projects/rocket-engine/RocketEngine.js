@@ -288,7 +288,7 @@ export const SmartSparrow = () => {
             <ProjectSectionHeading>{CONTENT.howItStarted.heading}</ProjectSectionHeading>
             <ProjectSectionText>
               {CONTENT.howItStarted.paragraphs.map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
+                <ProjectSectionText key={index}>{paragraph}</ProjectSectionText>
               ))}
             </ProjectSectionText>
             {/* <ProjectSectionHeading>How It All Started</ProjectSectionHeading>
@@ -402,7 +402,7 @@ export const SmartSparrow = () => {
               <ProjectSectionHeading>{CONTENT.vision.heading}</ProjectSectionHeading>
               <ProjectSectionText>
                 {CONTENT.vision.paragraphs.map((paragraph, index) => (
-                  <p key={index}>{paragraph}</p>
+                  <ProjectSectionText key={index}>{paragraph}</ProjectSectionText>
                 ))}
               </ProjectSectionText>
             </ProjectTextRow>
@@ -490,7 +490,7 @@ export const SmartSparrow = () => {
                 </ProjectSectionHeading>
                 <ProjectSectionText>
                   {CONTENT.coldEmails.paragraphs.map((paragraph, index) => (
-                    <p key={index}>{paragraph}</p>
+                    <ProjectSectionText key={index}>{paragraph}</ProjectSectionText>
                   ))}
                 </ProjectSectionText>
               </ProjectTextRow>
@@ -541,7 +541,7 @@ export const SmartSparrow = () => {
                 </ProjectSectionHeading>
                 <ProjectSectionText>
                   {CONTENT.challenges.paragraphs.map((paragraph, index) => (
-                    <p key={index}>{paragraph}</p>
+                    <ProjectSectionText key={index}>{paragraph}</ProjectSectionText>
                   ))}
                 </ProjectSectionText>
               </ProjectTextRow>
@@ -598,7 +598,7 @@ export const SmartSparrow = () => {
                 <ProjectSectionHeading>{CONTENT.whatsNext.heading}</ProjectSectionHeading>
                 <ProjectSectionText>
                   {CONTENT.whatsNext.paragraphs.map((paragraph, index) => (
-                    <p key={index}>{paragraph}</p>
+                    <ProjectSectionText key={index}>{paragraph}</ProjectSectionText>
                   ))}
                 </ProjectSectionText>
               </ProjectTextRow>

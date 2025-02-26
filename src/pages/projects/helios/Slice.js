@@ -10,17 +10,13 @@ import sliceBackgroundBar from 'assets/slice-background-bar.jpg';
 // import sliceBackgroundLarge from 'assets/slice-background-large.jpg';
 // import sliceBackgroundPlaceholder from 'assets/slice-background-placeholder.jpg';
 import sliceBackground from 'assets/helios.png';
-// import sliceIrlPlaceholder from 'assets/slice-irl-placeholder.jpg';
-// import sliceIrl from 'assets/slice-irl.jpg';
-import sliceSidebarAnnotationsLarge from 'assets/slice-sidebar-annotations-large.png';
-import sliceSidebarAnnotationsPlaceholder from 'assets/slice-sidebar-annotations-placeholder.png';
-import sliceSidebarAnnotations from 'assets/slice-sidebar-annotations.png';
-import sliceSidebarLayersLarge from 'assets/slice-sidebar-layers-large.png';
-import sliceSidebarLayersPlaceholder from 'assets/slice-sidebar-layers-placeholder.png';
-import sliceSidebarLayers from 'assets/slice-sidebar-layers.png';
+import sliceSidebarAnnotations from 'assets/halios1.png';
 import sliceSlidesLarge from 'assets/slice-slides-large.jpg';
-import sliceSlidesPlaceholder from 'assets/slice-slides-placeholder.jpg';
+import sliceSlidesPlaceholder from 'assets/slice-slides.jpg';
 import sliceSlides from 'assets/slice-slides.jpg';
+import sliceSidebarLayers from 'assets/halios2.png';
+import haliosHome from 'assets/haliosHome.png';
+
 import heliosNext from 'assets/helios-next.jpg'; // Replace with actual path to your image
 import heliosNextLarge from 'assets/helios-next-large.jpg'; // Replace with actual path
 import { Footer } from 'components/Footer';
@@ -263,7 +259,7 @@ export const Slice = () => {
                 {CONTENT.howItStarted.heading}
               </ProjectSectionHeading>
               {CONTENT.howItStarted.paragraphs.map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
+                <ProjectSectionText key={index}>{paragraph}</ProjectSectionText>
               ))}
             </ProjectTextRow>
             <Image
@@ -275,7 +271,11 @@ export const Slice = () => {
           </ProjectSectionContent>
         </ProjectSection>
         <ProjectSection>
-          <ProjectSectionColumns centered className={styles.columns}>
+          <ProjectSectionColumns
+            style={{ marginBottom: '0px' }}
+            centered
+            className={styles.columns}
+          >
             <div className={styles.imagesText}>
               <ProjectSectionHeading>
                 {CONTENT.bringingItTogether.heading}
@@ -287,15 +287,15 @@ export const Slice = () => {
             <div className={styles.sidebarImages}>
               <Image
                 className={styles.sidebarImage}
-                srcSet={[sliceSidebarLayers, sliceSidebarLayersLarge]}
-                placeholder={sliceSidebarLayersPlaceholder}
+                srcSet={[sliceSidebarLayers]}
+                placeholder={sliceSidebarLayers}
                 alt="The layers sidebar design, now with user profiles."
                 sizes={`(max-width: ${media.mobile}px) 200px, 343px`}
               />
               <Image
                 className={styles.sidebarImage}
-                srcSet={[sliceSidebarAnnotations, sliceSidebarAnnotationsLarge]}
-                placeholder={sliceSidebarAnnotationsPlaceholder}
+                srcSet={[sliceSidebarAnnotations]}
+                placeholder={sliceSidebarAnnotations}
                 alt="Multiple user annotations on a shared layer."
                 sizes={`(max-width: ${media.mobile}px) 200px, 343px`}
               />
@@ -303,6 +303,12 @@ export const Slice = () => {
           </ProjectSectionColumns>
         </ProjectSection>
 
+        <Image
+          srcSet={[haliosHome]}
+          placeholder={haliosHome}
+          alt="Multiple user annotations on a shared layer."
+          sizes={`(max-width: ${media.mobile}px) 584px, (max-width: ${media.tablet}px) 747px, 556px`}
+        />
         <ProjectSection padding="top">
           <ProjectSectionContent className={styles.grid}>
             <div className={styles.gridImage}>
@@ -334,7 +340,6 @@ export const Slice = () => {
             </div>
           </ProjectSectionContent>
         </ProjectSection>
-
         <ProjectSection dark>
           <ProjectSectionContent>
             <ProjectTextRow>
@@ -351,7 +356,6 @@ export const Slice = () => {
             />
           </ProjectSectionContent>
         </ProjectSection>
-
         {/* <ProjectSection>
           <ProjectSectionContent>
             <ProjectTextRow center centerMobile noMargin>

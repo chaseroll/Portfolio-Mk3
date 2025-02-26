@@ -19,7 +19,7 @@ import sliceSidebarLayersLarge from 'assets/slice-sidebar-layers-large.png';
 import sliceSidebarLayersPlaceholder from 'assets/slice-sidebar-layers-placeholder.png';
 import sliceSidebarLayers from 'assets/slice-sidebar-layers.png';
 import sliceSlidesLarge from 'assets/slice-slides-large.jpg';
-import sliceSlidesPlaceholder from 'assets/slice-slides-placeholder.jpg';
+// import sliceSlidesPlaceholder from 'assets/slice-slides-placeholder.jpg';
 import sliceSlides from 'assets/slice-slides.jpg';
 import { Footer } from 'components/Footer';
 import { Image } from 'components/Image';
@@ -264,7 +264,7 @@ export const Slice = () => {
             </ProjectTextRow>
             <Image
               srcSet={[sliceSlides, sliceSlidesLarge]}
-              placeholder={sliceSlidesPlaceholder}
+              placeholder={sliceSlidesLarge}
               alt="The new My Slides tab in slice, showing annotated and favorited slides."
               sizes={`(max-width: ${media.mobile}px) 500px, (max-width: ${media.tablet}px) 800px, 1000px`}
             />
